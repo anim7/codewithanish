@@ -15,7 +15,7 @@ const PostsLoading: React.FunctionComponent = () => {
         {keys.map((key) => (
           <div
             key={key}
-            className="animate-pulse shadow-xl dark:shadow-sm dark:shadow-slate-800 dark:border-slate-800 dark:border w-72 h-[25rem] rounded-2xl cursor-pointer dark:bg-slate-900"
+            className="animate-pulse shadow-xl dark:shadow-sm bg-white dark:shadow-slate-800 dark:border-slate-800 dark:border w-72 h-[25rem] rounded-2xl cursor-pointer dark:bg-slate-900"
           >
             <div>
               <div className="relative w-full bg-gray-300 h-44 dark:bg-slate-800 rounded-t-2xl" />

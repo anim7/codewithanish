@@ -14,6 +14,7 @@ import Layout from "app/core/layouts/Layout"
 import getTechnologies from "app/technologies/queries/getTechnologies"
 import TechnologiesListComponent from "app/technologies/components/TechnologiesList"
 import { Technology } from "@prisma/client"
+import TechnologiesLoading from "app/technologies/components/TechnologiesLoading"
 
 export const TechnologiesList = () => {
   const [{ technologies }] = useQuery(getTechnologies, {
@@ -90,7 +91,7 @@ export const TechnologiesList = () => {
 
 const TechnologiesPage: BlitzPage = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<TechnologiesLoading />}>
       <TechnologiesList />
     </Suspense>
   )

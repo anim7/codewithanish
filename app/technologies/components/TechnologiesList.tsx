@@ -19,6 +19,8 @@ const TechnologiesList: React.FunctionComponent<Props> = ({ techs }) => {
               key={key}
               target="_blank"
               rel="noopener noreferrer"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.02 }}
