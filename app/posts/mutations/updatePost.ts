@@ -13,6 +13,7 @@ const UpdatePost = z.object({
   userId: z.number().optional(),
   published: z.boolean().optional(),
   publishedAt: z.date().optional(),
+  image: z.string(),
 })
 
 export default resolver.pipe(

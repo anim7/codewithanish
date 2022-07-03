@@ -1,5 +1,6 @@
 // tailwind.config.js
 module.exports = {
+  darkMode: "class",
   content: ["{pages,app}/**/*.{js,ts,jsx,tsx}"],
   mode: "jit",
   purge: ["./app/**/*.{js,ts,jsx,tsx}"],

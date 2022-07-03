@@ -66,8 +66,21 @@ model Post {
   title       String
   metaTitle   String
   summary     String
+  content     String
   slug        String   @unique
   timeToRead  Int
   user        User     @relation(fields: [userId], references: [id])
   userId      Int
+  image       String
+}
+
+model Technology {
+  id               Int      @id @default(autoincrement())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  name             String
+  logo             String
+  desc             String
+  link             String
+  invertInDarkMode Boolean
 }

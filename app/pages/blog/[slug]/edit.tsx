@@ -1,4 +1,4 @@
-import { Suspense } from "react"
+import { Suspense, useState } from "react"
 import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getPost from "app/posts/queries/getPost"
@@ -7,10 +7,11 @@ import { PostForm, FORM_ERROR } from "app/posts/components/PostForm"
 
 export const EditPost = () => {
   const router = useRouter()
-  const postId = useParam("postId", "number")
+  const slug = useParam("slug", "string")
+  const [richText, setRichText] = useState("")
   const [post, { setQueryData }] = useQuery(
     getPost,
-    { id: postId },
+    { slug: slug },
     {
       // This ensures the query never refreshes and overwrites the form data while the user is editing.
       staleTime: Infinity,
@@ -30,6 +31,8 @@ export const EditPost = () => {
 
         <PostForm
           submitText="Update Post"
+          value={richText}
+          setValue={setRichText}
           // TODO use a zod schema for form validation
           //  - Tip: extract mutation's schema into a shared `validations.ts` file and
           //         then import and use it here
@@ -42,7 +45,7 @@ export const EditPost = () => {
                 ...values,
               })
               await setQueryData(updated)
-              router.push(Routes.ShowPostPage({ postId: updated.id }))
+              router.push(Routes.ShowPostPage({ slug: updated.slug }))
             } catch (error: any) {
               console.error(error)
               return {
