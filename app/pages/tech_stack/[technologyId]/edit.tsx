@@ -1,12 +1,24 @@
 import { Suspense } from "react"
-import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
+import {
+  Head,
+  Link,
+  useRouter,
+  useQuery,
+  useMutation,
+  useParam,
+  BlitzPage,
+  Routes,
+  useSession,
+} from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getTechnology from "app/technologies/queries/getTechnology"
 import updateTechnology from "app/technologies/mutations/updateTechnology"
 import { TechnologyForm, FORM_ERROR } from "app/technologies/components/TechnologyForm"
+import { UpdateTechnologySchema } from "app/technologies/validation"
 
 export const EditTechnology = () => {
   const router = useRouter()
+  const session = useSession()
   const technologyId = useParam("technologyId", "number")
   const [technology, { setQueryData }] = useQuery(
     getTechnology,
@@ -18,56 +30,50 @@ export const EditTechnology = () => {
   )
   const [updateTechnologyMutation] = useMutation(updateTechnology)
 
-  return (
-    <>
-      <Head>
-        <title>Edit Technology {technology.id}</title>
-      </Head>
+  if (session.role !== "ADMIN") {
+    router.push(Routes.TechnologiesPage())
+  }
 
-      <div>
-        <h1>Edit Technology {technology.id}</h1>
-        <pre>{JSON.stringify(technology, null, 2)}</pre>
+  if (session.role === "ADMIN")
+    return (
+      <>
+        <Head>
+          <title>Edit Technology {technology.id}</title>
+        </Head>
 
-        <TechnologyForm
-          submitText="Update Technology"
-          // TODO use a zod schema for form validation
-          //  - Tip: extract mutation's schema into a shared `validations.ts` file and
-          //         then import and use it here
-          // schema={UpdateTechnology}
-          initialValues={technology}
-          onSubmit={async (values) => {
-            try {
-              const updated = await updateTechnologyMutation({
-                id: technology.id,
-                ...values,
-              })
-              await setQueryData(updated)
-              router.push(Routes.TechnologiesPage())
-            } catch (error: any) {
-              console.error(error)
-              return {
-                [FORM_ERROR]: error.toString(),
+        <div>
+          <h1>Edit Technology {technology.id}</h1>
+          <pre>{JSON.stringify(technology, null, 2)}</pre>
+
+          <TechnologyForm
+            submitText="Update Technology"
+            schema={UpdateTechnologySchema}
+            initialValues={technology}
+            onSubmit={async (values) => {
+              try {
+                const updated = await updateTechnologyMutation(values)
+                await setQueryData(updated)
+                router.push(Routes.TechnologiesPage())
+              } catch (error: any) {
+                console.error(error)
+                return {
+                  [FORM_ERROR]: error.toString(),
+                }
               }
-            }
-          }}
-        />
-      </div>
-    </>
-  )
+            }}
+          />
+        </div>
+      </>
+    )
+  else return <div className="min-h-screen" />
 }
 
 const EditTechnologyPage: BlitzPage = () => {
   return (
     <div>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div className="min-h-screen" />}>
         <EditTechnology />
       </Suspense>
-
-      <p>
-        <Link href={Routes.TechnologiesPage()}>
-          <a>Technologies</a>
-        </Link>
-      </p>
     </div>
   )
 }

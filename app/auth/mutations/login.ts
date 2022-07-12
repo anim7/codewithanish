@@ -4,7 +4,7 @@ import { Login } from "../validations"
 import { Role } from "types"
 
 export const authenticateUser = async (rawEmail: string, rawPassword: string) => {
-  const {email, password} = Login.parse({email: rawEmail, password: rawPassword})
+  const { email, password } = Login.parse({ email: rawEmail, password: rawPassword })
   const user = await db.user.findFirst({ where: { email } })
   if (!user) throw new AuthenticationError()
 
@@ -24,7 +24,7 @@ export default resolver.pipe(resolver.zod(Login), async ({ email, password }, ct
   // This throws an error if credentials are invalid
   const user = await authenticateUser(email, password)
 
-  await ctx.session.$create({ userId: user.id, role: user.role as Role })
+  await ctx.session.$create({ userId: user.id, role: user.role as unknown as Role })
 
   return user
 })

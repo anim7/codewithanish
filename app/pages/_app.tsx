@@ -57,7 +57,6 @@ export default function App({ Component, pageProps }: AppProps) {
           <ThemeContext.Provider value={{ theme, setTheme }}>
             <ProgressContext.Provider value={{ progress, setProgress }}>
               <Head>
-                <title>Bigfoot</title>
                 <link
                   href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"
                   rel="stylesheet"

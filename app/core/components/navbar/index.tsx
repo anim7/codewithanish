@@ -7,10 +7,9 @@ import NavItem from "./navitem"
 import { toggleTheme } from "app/utils/navutils"
 import LinkInterface from "app/types/link"
 import { Routes } from "blitz"
+import { motion } from "framer-motion"
 
-interface Props {}
-
-const Navbar: React.FunctionComponent<Props> = () => {
+const Navbar: React.FunctionComponent = () => {
   const { theme, setTheme } = useContext(ThemeContext)
   const handleClick = () => {
     toggleTheme(theme, setTheme)
@@ -28,7 +27,10 @@ const Navbar: React.FunctionComponent<Props> = () => {
     },
   ]
   return (
-    <nav
+    <motion.nav
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.02 }}
       className={`${styles.container} flex justify-between items-center flex-col z-10 fixed transition-all duration-200 text-gray-500 h-screen w-12 bg-[#0d121b] hover:w-64 sm:static sm:w-full sm:h-12 sm:flex-row`}
     >
       <div className="w-full sm:flex sm:items-center sm:h-full sm:w-fit">
@@ -46,9 +48,9 @@ const Navbar: React.FunctionComponent<Props> = () => {
               </h1>
               <h1
                 id={styles.heading}
-                className="absolute left-12 tracking-wider transition-all duration-200 whitespace-nowrap -translate-x-[160%] group-hover:text-white text-[1.5rem] sm:hidden"
+                className="absolute left-11 tracking-wider transition-all duration-200 whitespace-nowrap -translate-x-[160%] group-hover:text-white text-[1.3rem] sm:hidden"
               >
-                Bigfoot
+                CodeWithAnish
               </h1>
               <div className="flex items-center justify-center h-full sm:hidden">
                 <Image
@@ -87,7 +89,7 @@ const Navbar: React.FunctionComponent<Props> = () => {
           </p>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   )
 }
 

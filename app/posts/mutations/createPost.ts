@@ -1,4 +1,4 @@
-import { resolver } from "blitz"
+import { Ctx, resolver } from "blitz"
 import db from "db"
 import { z } from "zod"
 
@@ -8,21 +8,23 @@ export const CreatePost = z.object({
   summary: z.string(),
   content: z.string(),
   slug: z.string(),
-  // timeToRead: z.number(),
   userId: z.number(),
   published: z.boolean(),
-  // publishedAt: z.date(),
   image: z.string(),
 })
 
-export default resolver.pipe(resolver.zod(CreatePost), resolver.authorize(), async (input) => {
-  // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-  const d = {
-    ...input,
-    timeToRead: Math.ceil(input.content.split(" ").length / 200),
-    publishedAt: input.published ? new Date() : "null",
-  }
-  const post = await db.post.create({ data: d })
+export default resolver.pipe(
+  resolver.zod(CreatePost),
+  resolver.authorize("ADMIN"),
+  async (input) => {
+    // TODO: in multi-tenant app, you must add validation to ensure correct tenant
+    const d = {
+      ...input,
+      timeToRead: Math.ceil(input.content.split(" ").length / 200),
+      publishedAt: input.published ? new Date() : "",
+    }
+    const post = await db.post.create({ data: d })
 
-  return post
-})
+    return post
+  }
+)

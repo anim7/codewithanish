@@ -3,8 +3,8 @@ import React from "react"
 const Footer: React.FunctionComponent = () => {
   return (
     <div className="bg-gray-900 dark:bg-transparent p-2 transition-all duration-200 text-[0.8rem] ml-12 sm:ml-0 flex justify-between">
-      <p className="text-white flex items-center">Copyright &#169; 2022 bigfoot.com</p>
-      <div className="flex justify-between items-center w-24">
+      <p className="flex items-center text-white">Copyright &#169; 2022 codewithanish.com</p>
+      <div className="flex items-center justify-between w-24">
         <a
           href="https://github.com/anim7"
           target="_blank"
@@ -31,7 +31,7 @@ const Footer: React.FunctionComponent = () => {
           href="https://www.linkedin.com/in/anish-pandit-15840a224/"
           target="_blank"
           rel="noopener noreferrer"
-          className="invert flex items-center"
+          className="flex items-center invert"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

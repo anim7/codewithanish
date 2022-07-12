@@ -8,7 +8,7 @@ const PostsLoading: React.FunctionComponent = () => {
       initial={{ opacity: 0 }}
       transition={{ duration: 0.02 }}
       animate={{ opacity: 1 }}
-      className="flex flex-col items-center justify-center min-h-screen py-6 ml-12 dark:text-white"
+      className="flex flex-col items-center justify-center min-h-screen py-6 ml-12 dark:text-white sm:ml-0"
     >
       <div className="text-[2rem] font-bold">Blog</div>
       <div className="grid items-center justify-center w-full gap-4 p-4 pl-12 grid-cols-posts">

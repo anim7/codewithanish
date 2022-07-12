@@ -1,13 +1,24 @@
 import { Suspense, useState } from "react"
-import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
+import {
+  Head,
+  useRouter,
+  useQuery,
+  useMutation,
+  useParam,
+  BlitzPage,
+  Routes,
+  useSession,
+} from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getPost from "app/posts/queries/getPost"
 import updatePost from "app/posts/mutations/updatePost"
 import { PostForm, FORM_ERROR } from "app/posts/components/PostForm"
+import { updatePostSchema } from "app/posts/validation"
 
 export const EditPost = () => {
   const router = useRouter()
   const slug = useParam("slug", "string")
+  const session = useSession()
   const [richText, setRichText] = useState("")
   const [post, { setQueryData }] = useQuery(
     getPost,
@@ -19,58 +30,52 @@ export const EditPost = () => {
   )
   const [updatePostMutation] = useMutation(updatePost)
 
-  return (
-    <>
-      <Head>
-        <title>Edit Post {post.id}</title>
-      </Head>
+  if (session.role !== "ADMIN") {
+    router.push(Routes.PostsPage())
+  }
 
-      <div>
-        <h1>Edit Post {post.id}</h1>
-        <pre>{JSON.stringify(post, null, 2)}</pre>
+  if (session.role === "ADMIN")
+    return (
+      <>
+        <Head>
+          <title>Edit Post {post.id}</title>
+        </Head>
 
-        <PostForm
-          submitText="Update Post"
-          value={richText}
-          setValue={setRichText}
-          // TODO use a zod schema for form validation
-          //  - Tip: extract mutation's schema into a shared `validations.ts` file and
-          //         then import and use it here
-          // schema={UpdatePost}
-          initialValues={post}
-          onSubmit={async (values) => {
-            try {
-              const updated = await updatePostMutation({
-                id: post.id,
-                ...values,
-              })
-              await setQueryData(updated)
-              router.push(Routes.ShowPostPage({ slug: updated.slug }))
-            } catch (error: any) {
-              console.error(error)
-              return {
-                [FORM_ERROR]: error.toString(),
+        <div>
+          <h1>Edit Post {post.id}</h1>
+          <pre>{JSON.stringify(post, null, 2)}</pre>
+
+          <PostForm
+            submitText="Update Post"
+            value={richText}
+            setValue={setRichText}
+            schema={updatePostSchema}
+            initialValues={post}
+            onSubmit={async (values) => {
+              try {
+                const updated = await updatePostMutation(values)
+                await setQueryData(updated)
+                router.push(Routes.ShowPostPage({ slug: updated.slug }))
+              } catch (error: any) {
+                console.error(error)
+                return {
+                  [FORM_ERROR]: error.toString(),
+                }
               }
-            }
-          }}
-        />
-      </div>
-    </>
-  )
+            }}
+          />
+        </div>
+      </>
+    )
+  else return <div className="min-h-screen" />
 }
 
 const EditPostPage: BlitzPage = () => {
   return (
     <div>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div className="min-h-screen" />}>
         <EditPost />
       </Suspense>
-
-      <p>
-        <Link href={Routes.PostsPage()}>
-          <a>Posts</a>
-        </Link>
-      </p>
     </div>
   )
 }

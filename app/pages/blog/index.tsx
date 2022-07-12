@@ -40,7 +40,8 @@ const PostsPage: BlitzPage = () => {
   )
 }
 
-PostsPage.getLayout = (page) => <Layout>{page}</Layout>
+PostsPage.getLayout = (page) => <Layout title="CodeWithAnish - Blog">{page}</Layout>
+PostsPage.suppressFirstRenderFlicker = true
 
 export default PostsPage
 

@@ -14,6 +14,7 @@ export interface FormProps<S extends z.ZodType<any, any>>
   schema?: S
   onSubmit: FinalFormProps<z.infer<S>>["onSubmit"]
   initialValues?: FinalFormProps<z.infer<S>>["initialValues"]
+  fullBtnWidth?: boolean
 }
 
 export function Form<S extends z.ZodType<any, any>>({
@@ -22,6 +23,7 @@ export function Form<S extends z.ZodType<any, any>>({
   schema,
   initialValues,
   onSubmit,
+  fullBtnWidth,
   ...props
 }: FormProps<S>) {
   return (
@@ -39,7 +41,7 @@ export function Form<S extends z.ZodType<any, any>>({
             </div>
           )}
           {submitText && (
-            <Button type="submit" disabled={submitting} width="15rem">
+            <Button type="submit" disabled={submitting} width={fullBtnWidth ? undefined : "15rem"}>
               {submitText}
             </Button>
           )}

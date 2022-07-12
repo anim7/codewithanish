@@ -8,7 +8,7 @@ const DeleteTechnology = z.object({
 
 export default resolver.pipe(
   resolver.zod(DeleteTechnology),
-  resolver.authorize(),
+  resolver.authorize("ADMIN"),
   async ({ id }) => {
     // TODO: in multi-tenant app, you must add validation to ensure correct tenant
     const technology = await db.technology.deleteMany({ where: { id } })
