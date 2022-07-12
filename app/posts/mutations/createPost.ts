@@ -1,4 +1,4 @@
-import { Ctx, resolver } from "blitz"
+import { resolver } from "blitz"
 import db from "db"
 import { z } from "zod"
 
@@ -17,7 +17,6 @@ export default resolver.pipe(
   resolver.zod(CreatePost),
   resolver.authorize("ADMIN"),
   async (input) => {
-    // TODO: in multi-tenant app, you must add validation to ensure correct tenant
     const d = {
       ...input,
       timeToRead: Math.ceil(input.content.split(" ").length / 200),

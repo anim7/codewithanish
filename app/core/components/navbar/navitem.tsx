@@ -2,7 +2,6 @@ import Image from "next/image"
 import Link from "next/link"
 import React from "react"
 import LinkInterface from "app/types/link"
-import { Routes } from "blitz"
 
 interface Props {
   link: LinkInterface

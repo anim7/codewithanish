@@ -1,7 +1,6 @@
 import React from "react"
 import Background from "../background"
 import { motion } from "framer-motion"
-import { Link, Routes } from "blitz"
 
 const Home: React.FunctionComponent = () => {
   return (

@@ -35,10 +35,8 @@ const changeClassList = (theme: Theme) => {
   if (theme === "light") {
     document.documentElement.classList.remove("dark")
     document.body.style.backgroundColor = "white"
-    // document.body.style.backgroundImage = "none";
   } else {
     document.documentElement.classList.add("dark")
     document.body.style.backgroundColor = "rgb(1 1 1/1)"
-    // document.body.style.backgroundImage = 'url("background.png")';
   }
 }

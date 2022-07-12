@@ -3,19 +3,13 @@ import db from "db"
 import { z } from "zod"
 
 const GetPost = z.object({
-  // This accepts type of undefined, but is required at runtime
   slug: z.string().optional().refine(Boolean, "Required"),
 })
 
-export default resolver.pipe(
-  resolver.zod(GetPost),
-  //  resolver.authorize(),
-  async ({ slug }) => {
-    // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-    const post = await db.post.findFirst({ where: { slug } })
+export default resolver.pipe(resolver.zod(GetPost), async ({ slug }) => {
+  const post = await db.post.findFirst({ where: { slug } })
 
-    if (!post) throw new NotFoundError()
+  if (!post) throw new NotFoundError()
 
-    return post
-  }
-)
+  return post
+})

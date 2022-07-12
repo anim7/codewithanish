@@ -7,9 +7,7 @@ export { FORM_ERROR } from "final-form"
 
 export interface FormProps<S extends z.ZodType<any, any>>
   extends Omit<PropsWithoutRef<JSX.IntrinsicElements["form"]>, "onSubmit"> {
-  /** All your form fields */
   children?: ReactNode
-  /** Text to display in the submit button */
   submitText?: string
   schema?: S
   onSubmit: FinalFormProps<z.infer<S>>["onSubmit"]

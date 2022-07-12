@@ -7,25 +7,14 @@ import {
   invokeWithMiddleware,
   getQueryKey,
   dehydrate,
-  GetStaticProps,
-  GetStaticPropsContext,
 } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import Posts from "app/posts/components/Posts"
 import getPosts from "app/posts/queries/getPosts"
-import { Suspense, useContext } from "react"
+import { Suspense } from "react"
 import PostsLoading from "app/posts/components/PostsLoading"
 
 export const PostsList = () => {
-  // const { setProgress } = useContext(ProgressContext)
-  // setProgress(0)
-  // setProgress(40)
-  // const [{ posts }] = useQuery(getPosts, {
-  //   orderBy: { id: "asc" },
-  //   skip: 0,
-  //   take: ITEMS_PER_PAGE,
-  // })
-  // setProgress(100)
   const [{ posts }] = useQuery(getPosts, {
     orderBy: { id: "asc" },
   })

@@ -1,19 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from "react"
+import React, { useRef } from "react"
 import { motion } from "framer-motion"
-import { Canvas, useFrame, useLoader, Vector3 } from "@react-three/fiber"
-import { MathUtils, Mesh, TextureLoader } from "three"
+import { Canvas, useFrame } from "@react-three/fiber"
+import { Mesh } from "three"
 import { Edges, useTexture } from "@react-three/drei"
 
 const BoxComponent = (props: any) => {
-  // const getRandomValues = (range: number): Vector3 => {
-  //   return [
-  //     MathUtils.randFloatSpread(range),
-  //     MathUtils.randFloatSpread(range),
-  //     MathUtils.randFloatSpread(range),
-  //   ]
-  // }
   const mesh = useRef<Mesh>(null!)
-  // const values = getRandomValues(0.005)
   const texture = useTexture("favicon.ico")
 
   useFrame(() => {
@@ -38,11 +30,6 @@ const Background: React.FunctionComponent = () => {
         <ambientLight intensity={0.5} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
         <pointLight position={[-10, -10, -10]} />
-        {/* {Array<number>(500)
-          .fill(1)
-          .map((_, key) => (
-            <BoxComponent key={key} />
-          ))} */}
         <BoxComponent />
       </Canvas>
     </motion.div>

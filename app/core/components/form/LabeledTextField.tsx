@@ -2,11 +2,8 @@ import { forwardRef, ComponentPropsWithoutRef, PropsWithoutRef } from "react"
 import { useField, UseFieldConfig } from "react-final-form"
 
 export interface LabeledTextFieldProps extends PropsWithoutRef<JSX.IntrinsicElements["input"]> {
-  /** Field name. */
   name: string
-  /** Field label. */
   label: string
-  /** Field type. Doesn't include radio buttons and checkboxes */
   type?: "text" | "password" | "email" | "number"
   outerProps?: PropsWithoutRef<JSX.IntrinsicElements["div"]>
   labelProps?: ComponentPropsWithoutRef<"label">
@@ -19,11 +16,7 @@ export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldPro
       input,
       meta: { touched, error, submitError, submitting },
     } = useField(name, {
-      parse:
-        props.type === "number"
-          ? (Number as any)
-          : // Converting `""` to `null` ensures empty values will be set to null in the DB
-            (v) => (v === "" ? null : v),
+      parse: props.type === "number" ? (Number as any) : (v) => (v === "" ? null : v),
       ...fieldProps,
     })
 

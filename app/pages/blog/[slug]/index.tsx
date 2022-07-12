@@ -37,7 +37,6 @@ const ShowPostPage: BlitzPage = () => {
   )
 }
 
-// ShowPostPage.authenticate = true
 ShowPostPage.getLayout = (page) => <Layout>{page}</Layout>
 
 export default ShowPostPage

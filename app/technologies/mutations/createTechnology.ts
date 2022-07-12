@@ -14,7 +14,6 @@ export default resolver.pipe(
   resolver.zod(CreateTechnology),
   resolver.authorize("ADMIN"),
   async (input) => {
-    // TODO: in multi-tenant app, you must add validation to ensure correct tenant
     const technology = await db.technology.create({ data: input })
     return technology
   }

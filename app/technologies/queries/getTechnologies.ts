@@ -6,7 +6,6 @@ interface GetTechnologiesInput
 
 export default resolver.pipe(
   async ({ where, orderBy, skip = 0, take = 100 }: GetTechnologiesInput) => {
-    // TODO: in multi-tenant app, you must add validation to ensure correct tenant
     const {
       items: technologies,
       hasMore,
