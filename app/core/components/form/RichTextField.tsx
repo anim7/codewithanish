@@ -70,7 +70,11 @@ export const RichTextField: React.FunctionComponent<Props> = ({ value, setValue 
       <ReactQuill
         theme="snow"
         value={value}
-        onChange={setValue}
+        onChange={(content) => {
+          setTimeout(() => {
+            setValue(content)
+          }, 2000)
+        }}
         modules={modules}
         formats={formats}
         bounds="#editor"
