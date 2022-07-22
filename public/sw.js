@@ -19,9 +19,9 @@ if (!self.define) {
     const i = e || ("document" in self ? document.currentScript.src : "") || location.href
     if (n[i]) return
     let r = {}
-    const t = (e) => s(e, i),
-      o = { module: { uri: i }, exports: r, require: t }
-    n[i] = Promise.all(a.map((e) => o[e] || t(e))).then((e) => (c(...e), r))
+    const o = (e) => s(e, i),
+      t = { module: { uri: i }, exports: r, require: o }
+    n[i] = Promise.all(a.map((e) => t[e] || o(e))).then((e) => (c(...e), r))
   }
 }
 define(["./workbox-5f5b08d6"], function (e) {
@@ -32,11 +32,11 @@ define(["./workbox-5f5b08d6"], function (e) {
     e.precacheAndRoute(
       [
         {
-          url: "/_next/static/EIjtwcTIaZwqIY5tc8vuB/_buildManifest.js",
+          url: "/_next/static/U0nfZHuXc7qzHLO6XqpO5/_buildManifest.js",
           revision: "06147d8677480fe6cc55fa140e414f1b",
         },
         {
-          url: "/_next/static/EIjtwcTIaZwqIY5tc8vuB/_ssgManifest.js",
+          url: "/_next/static/U0nfZHuXc7qzHLO6XqpO5/_ssgManifest.js",
           revision: "b6652df95db52feb4daf4eca35380933",
         },
         {
@@ -68,8 +68,8 @@ define(["./workbox-5f5b08d6"], function (e) {
           revision: "f605dce6cca31f520b14",
         },
         {
-          url: "/_next/static/chunks/pages/_app-0b6b98c6a6ddb92e4a9f.js",
-          revision: "0b6b98c6a6ddb92e4a9f",
+          url: "/_next/static/chunks/pages/_app-8baaf60b8221d162ecdd.js",
+          revision: "8baaf60b8221d162ecdd",
         },
         {
           url: "/_next/static/chunks/pages/_error-ea939aab753d9e9db3bd.js",
@@ -157,7 +157,7 @@ define(["./workbox-5f5b08d6"], function (e) {
         { url: "/icons/icon-72x72.png", revision: "e1222f97dfea7d56eaee6c06ad8a7199" },
         { url: "/icons/icon-96x96.png", revision: "c9945bedcc28e7fa7bf45f27e69e239b" },
         { url: "/linkedin.png", revision: "2467ee53337aab4c20524fef2bfa3f10" },
-        { url: "/manifest.json", revision: "7cf6038e7d6a753d0870ac53acfeb365" },
+        { url: "/manifest.json", revision: "1a753d4e6af7061c3957e2bac73b089e" },
         { url: "/ms-icon-144x144.png", revision: "c33f03fef94c7226137eda3f46b07506" },
         { url: "/ms-icon-150x150.png", revision: "b4c901f0e0f700eb475edc8680d4242a" },
         { url: "/ms-icon-310x310.png", revision: "ef8d2e41a9b51851218cc81fa54f13e8" },

@@ -80,7 +80,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
                 <link rel="manifest" href="/manifest.json" />
-                <meta name="msapplication-TileColor" content="#2196f3" />
+                <meta name="msapplication-TileColor" content="#0D121B" />
                 <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
                 <link href="/manifest.json" rel="manifest" />
                 <meta charSet="utf-8" />
@@ -97,13 +97,13 @@ export default function App({ Component, pageProps }: AppProps) {
                   name="keywords"
                   content="coding codewithanish web development programming fitbit blockchain"
                 />
-                <meta name="theme-color" content="#2196f3" />
+                <meta name="theme-color" content="#0D121B" />
                 <meta name="mobile-web-app-capable" content="yes" />
                 <meta name="apple-mobile-web-app-title" content="CodeWithAnish" />
                 <meta name="apple-mobile-web-app-capable" content="yes" />
                 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-                <meta name="msapplication-navbutton-color" content="#2196f3" />
-                <meta name="msapplication-TileColor" content="#2196f3" />
+                <meta name="msapplication-navbutton-color" content="#0D121B" />
+                <meta name="msapplication-TileColor" content="#0D121B" />
                 <meta name="msapplication-TileImage" content="icon-144x144.png" />
                 <meta name="msapplication-config" content="browserconfig.xml" />
                 <meta name="application-name" content="CodeWithAnish" />
