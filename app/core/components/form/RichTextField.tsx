@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import ReactQuill, { Quill } from "react-quill"
 import "react-quill/dist/quill.snow.css"
 import "highlight.js/styles/night-owl.css"
@@ -13,6 +13,17 @@ interface Props {
 Quill.register("modules/imageResize", ImageResize)
 
 export const RichTextField: React.FunctionComponent<Props> = ({ value, setValue }) => {
+  const [timeoutId, setTimeoutId] = React.useState<NodeJS.Timeout>()
+  useEffect(() => {
+    clearTimeout(timeoutId)
+    setTimeoutId(
+      setTimeout(() => {
+        setValue(document.querySelector(".ql-editor")!.innerHTML)
+        console.log(value)
+      }, 2000)
+    )
+    //eslint-disable-next-line
+  }, [value])
   const modules = {
     toolbar: [
       ["bold", "italic", "underline", "strike"],
@@ -40,7 +51,9 @@ export const RichTextField: React.FunctionComponent<Props> = ({ value, setValue 
       parchment: Quill.import("parchment"),
       modules: ["Resize", "DisplaySize"],
     },
-    syntax: { highlight: (text: string) => hljs.highlightAuto(text).value },
+    syntax: {
+      highlight: (text: string) => hljs.highlightAuto(text).value,
+    },
   }
   const formats = [
     "background",
@@ -69,12 +82,8 @@ export const RichTextField: React.FunctionComponent<Props> = ({ value, setValue 
       <label className="text-black bg-white dark:bg-black dark:text-white">Content</label>
       <ReactQuill
         theme="snow"
-        value={value}
-        onChange={(content) => {
-          setTimeout(() => {
-            setValue(content)
-          }, 2000)
-        }}
+        // value={value}
+        onChange={setValue}
         modules={modules}
         formats={formats}
         bounds="#editor"

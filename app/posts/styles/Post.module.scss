@@ -8,6 +8,9 @@
     font-size: 0.9rem;
     overflow: auto;
     width: 100%;
+    white-space: pre-line;
+    word-wrap: break-word;
+    text-align: justify;
   }
 
   h1 {
