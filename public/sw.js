@@ -1,8 +1,8 @@
 if (!self.define) {
   let e,
     n = {}
-  const s = (s, a) => (
-    (s = new URL(s + ".js", a).href),
+  const s = (s, c) => (
+    (s = new URL(s + ".js", c).href),
     n[s] ||
       new Promise((n) => {
         if ("document" in self) {
@@ -15,13 +15,13 @@ if (!self.define) {
         return e
       })
   )
-  self.define = (a, c) => {
+  self.define = (c, a) => {
     const i = e || ("document" in self ? document.currentScript.src : "") || location.href
     if (n[i]) return
     let r = {}
     const o = (e) => s(e, i),
       t = { module: { uri: i }, exports: r, require: o }
-    n[i] = Promise.all(a.map((e) => t[e] || o(e))).then((e) => (c(...e), r))
+    n[i] = Promise.all(c.map((e) => t[e] || o(e))).then((e) => (a(...e), r))
   }
 }
 define(["./workbox-5f5b08d6"], function (e) {
@@ -32,11 +32,11 @@ define(["./workbox-5f5b08d6"], function (e) {
     e.precacheAndRoute(
       [
         {
-          url: "/_next/static/A2cbLLkZ63mfnvFkz3EEP/_buildManifest.js",
-          revision: "e6642ae09f046d04f29d83685f2fc3db",
+          url: "/_next/static/OLeRbci3YjUL8iQjP0Nks/_buildManifest.js",
+          revision: "f28ac57bda92827e4ffbf65c7cf0adb0",
         },
         {
-          url: "/_next/static/A2cbLLkZ63mfnvFkz3EEP/_ssgManifest.js",
+          url: "/_next/static/OLeRbci3YjUL8iQjP0Nks/_ssgManifest.js",
           revision: "b6652df95db52feb4daf4eca35380933",
         },
         {
@@ -68,8 +68,8 @@ define(["./workbox-5f5b08d6"], function (e) {
           revision: "f605dce6cca31f520b14",
         },
         {
-          url: "/_next/static/chunks/pages/_app-8baaf60b8221d162ecdd.js",
-          revision: "8baaf60b8221d162ecdd",
+          url: "/_next/static/chunks/pages/_app-a37aa1e4ec03cd7f5ddd.js",
+          revision: "a37aa1e4ec03cd7f5ddd",
         },
         {
           url: "/_next/static/chunks/pages/_error-ea939aab753d9e9db3bd.js",
@@ -92,8 +92,8 @@ define(["./workbox-5f5b08d6"], function (e) {
           revision: "eba1a966a6f17c983085",
         },
         {
-          url: "/_next/static/chunks/pages/index-832609b06a51f466b2fa.js",
-          revision: "832609b06a51f466b2fa",
+          url: "/_next/static/chunks/pages/index-fae8171f596bb9f07611.js",
+          revision: "fae8171f596bb9f07611",
         },
         {
           url: "/_next/static/chunks/pages/login-5406491daa5448cd2952.js",
@@ -174,7 +174,7 @@ define(["./workbox-5f5b08d6"], function (e) {
         cacheName: "start-url",
         plugins: [
           {
-            cacheWillUpdate: async ({ request: e, response: n, event: s, state: a }) =>
+            cacheWillUpdate: async ({ request: e, response: n, event: s, state: c }) =>
               n && "opaqueredirect" === n.type
                 ? new Response(n.body, { status: 200, statusText: "OK", headers: n.headers })
                 : n,

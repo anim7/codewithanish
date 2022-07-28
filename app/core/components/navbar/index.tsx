@@ -84,9 +84,12 @@ const Navbar: React.FunctionComponent = () => {
         <div
           className={`${styles.textContainer} absolute -translate-x-[400%] transition-all duration-200 w-full flex justify-center items-center sm:hidden`}
         >
-          <p className="transition-all duration-200 text-base mr-[0.4rem] group-hover:text-white">
+          <label
+            htmlFor="toggle"
+            className="transition-all duration-200 text-base mr-[0.4rem] group-hover:text-white"
+          >
             {theme.charAt(0).toUpperCase() + theme.substring(1).toLowerCase()} Theme
-          </p>
+          </label>
         </div>
       </div>
     </motion.nav>
