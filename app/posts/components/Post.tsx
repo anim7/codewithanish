@@ -21,7 +21,7 @@ const PostComponent: React.FunctionComponent<Props> = ({ post }) => {
   }
   return (
     <div
-      className={`${styles.container} flex flex-col items-center min-h-screen p-4 px-20 ml-12 sm:px-0 sm:ml-0`}
+      className={`${styles.container} flex flex-col items-center min-h-screen p-4 px-20 ml-12 sm:px-3 sm:ml-0`}
     >
       <h2 className="text-[2rem] font-bold text-black dark:text-white">{post.title}</h2>
       <article className="flex flex-col items-center w-full mt-4">

@@ -10,7 +10,6 @@
     width: 100%;
     white-space: pre-line;
     word-wrap: break-word;
-    text-align: justify;
   }
 
   h1 {
@@ -49,6 +48,16 @@
     border-radius: 0.5rem;
     &:hover {
       background-color: rgba(57, 57, 57, 0.7);
+    }
+  }
+}
+
+@media all and (orientation: landscape) {
+  .container {
+    code,
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
     }
   }
 }
