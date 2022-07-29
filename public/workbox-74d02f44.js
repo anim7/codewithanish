@@ -60,7 +60,7 @@ define(["exports"], function (exports) {
       if (method === "groupEnd") {
         inGroup = false
       }
-    } // eslint-disable-next-line @typescript-eslint/ban-types
+    }
 
     const api = {}
     const loggerMethods = Object.keys(methodToColorMap)
@@ -482,7 +482,6 @@ define(["exports"], function (exports) {
 
   const isInstance = (
     object, // Need the general type to do the check later.
-    // eslint-disable-next-line @typescript-eslint/ban-types
     expectedClass,
     details
   ) => {
@@ -839,9 +838,7 @@ define(["exports"], function (exports) {
       // See https://github.com/Microsoft/TypeScript/issues/28357#issuecomment-436484705
       self.addEventListener("message", (event) => {
         // event.data is type 'any'
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         if (event.data && event.data.type === "CACHE_URLS") {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           const { payload } = event.data
 
           {
@@ -1056,7 +1053,6 @@ define(["exports"], function (exports) {
 
       for (const route of routes) {
         let params // route.match returns type any, not possible to change right now.
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 
         const matchResult = route.match({
           url,
@@ -1078,7 +1074,6 @@ define(["exports"], function (exports) {
               )
             }
           } // See https://github.com/GoogleChrome/workbox/issues/2079
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 
           params = matchResult
 
@@ -1495,7 +1490,6 @@ define(["exports"], function (exports) {
       https://opensource.org/licenses/MIT.
     */
   // Can't change Function type right now.
-  // eslint-disable-next-line @typescript-eslint/ban-types
 
   const quotaErrorCallbacks = new Set()
 
