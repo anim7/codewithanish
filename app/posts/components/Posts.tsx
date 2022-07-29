@@ -2,12 +2,14 @@ import { Post } from "@prisma/client"
 import React from "react"
 import PostLink from "./PostLink"
 import { motion } from "framer-motion"
+import { Link, Routes, useSession } from "blitz"
 
 interface Props {
   posts: Post[]
 }
 
 const Posts: React.FunctionComponent<Props> = ({ posts }) => {
+  const session = useSession()
   return (
     <motion.main
       transition={{ duration: 0.2 }}
@@ -18,6 +20,21 @@ const Posts: React.FunctionComponent<Props> = ({ posts }) => {
         {posts.map((post, key) => {
           return <PostLink post={post} key={key} />
         })}
+        {session.role === "ADMIN" && (
+          <Link href={Routes.NewPostPage()}>
+            <motion.a
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.02 }}
+              className="w-72 h-[25rem] shadow-xl dark:shadow-sm dark:shadow-slate-800 dark:border-slate-800 dark:border rounded-2xl cursor-pointer dark:bg-slate-900 bg-white flex items-center justify-center font-extralight text-gray-300 dark:text-slate-700 text-[8rem]"
+            >
+              +
+            </motion.a>
+          </Link>
+        )}
       </div>
     </motion.main>
   )

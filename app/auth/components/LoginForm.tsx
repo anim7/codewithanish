@@ -17,7 +17,7 @@ export const LoginForm = (props: LoginFormProps) => {
         <h1 className="w-full text-center text-black dark:text-white text-[2rem] font-semibold">
           Login
         </h1>
-
+        <p className="w-full text-center text-black dark:text-white">if you are the owner</p>
         <Form
           submitText="Login"
           schema={Login}

@@ -11,7 +11,7 @@ import {
 import LoginForm from "app/auth/components/LoginForm"
 
 import "app/core/styles/index.scss"
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import Theme from "app/types/theme"
 import {
   getThemeFromLocalStorage,
@@ -23,6 +23,7 @@ import Footer from "app/core/components/footer"
 import Navbar from "app/core/components/navbar"
 import LoadingBar from "react-top-loading-bar"
 import { ProgressContext } from "app/core/components/progress/ProgressContext"
+import LogInOut from "app/auth/components/LogInOutButton"
 
 export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
@@ -118,6 +119,9 @@ export default function App({ Component, pageProps }: AppProps) {
                 />
               )}
               <Navbar />
+              <Suspense>
+                <LogInOut />
+              </Suspense>
               <main>
                 <Component {...pageProps} />
               </main>
