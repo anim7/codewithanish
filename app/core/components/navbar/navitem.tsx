@@ -19,6 +19,7 @@ const NavItem: React.FunctionComponent<Props> = ({ link }) => {
             width={25}
             height={25}
             draggable={false}
+            priority
           />
           <div className="absolute w-full flex justify-center items-center -translate-x-[400%] transition-all duration-200 sm:hidden">
             <p className="transition-all text-[1.4rem] mr-4 group-hover:text-white">{link.text}</p>

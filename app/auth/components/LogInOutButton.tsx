@@ -20,6 +20,7 @@ const LogInOut: React.FunctionComponent = () => {
               alt="Login"
               width={20}
               height={20}
+              priority
             />
           </a>
         </Link>
@@ -31,7 +32,14 @@ const LogInOut: React.FunctionComponent = () => {
           width="fit-content"
           onClick={handleClick}
         >
-          <Image className="dark:invert" src="/logout.png" alt="logout" width={20} height={20} />
+          <Image
+            className="dark:invert"
+            src="/logout.png"
+            alt="logout"
+            width={20}
+            height={20}
+            priority
+          />
         </Button>
       )}
     </>

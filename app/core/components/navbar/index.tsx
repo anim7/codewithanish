@@ -44,7 +44,14 @@ const Navbar: React.FunctionComponent = () => {
                 className="absolute left-3 top-[11px] transition-all duration-200 whitespace-nowrap
                 -translate-x-[400%] group-nav-hover:-translate-x-0 sm:relative sm:top-1 sm:translate-x-0 sm:mr-3"
               >
-                <Image src="/favicon.ico" alt="Logo" width={25} height={25} draggable={false} />
+                <Image
+                  src="/favicon.ico"
+                  alt="Logo"
+                  width={25}
+                  height={25}
+                  draggable={false}
+                  priority
+                />
               </h1>
               <h1
                 id={styles.heading}
@@ -61,6 +68,7 @@ const Navbar: React.FunctionComponent = () => {
                   width={25}
                   height={25}
                   draggable={false}
+                  priority
                 />
               </div>
             </>
