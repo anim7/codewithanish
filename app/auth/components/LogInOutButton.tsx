@@ -13,7 +13,7 @@ const LogInOut: React.FunctionComponent = () => {
     <>
       {session.userId === null ? (
         <Link href={Routes.LoginPage()}>
-          <a className="absolute right-1 top-1 sm:top-14">
+          <a className="absolute right-1 top-1 sm:top-14" id="login">
             <Image
               className="invert-[95%] dark:invert-[10%]"
               src="/login.png"
@@ -31,6 +31,7 @@ const LogInOut: React.FunctionComponent = () => {
           bgHover="transparent"
           width="fit-content"
           onClick={handleClick}
+          id="logout"
         >
           <Image
             className="dark:invert"

@@ -20,7 +20,7 @@ const PostLink: React.FunctionComponent<Props> = ({ post }) => {
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         transition={{ duration: 0.02 }}
-        className="w-72 h-[25rem] shadow-xl dark:shadow-sm dark:shadow-slate-800 dark:border-slate-800 dark:border rounded-2xl cursor-pointer dark:bg-slate-900 bg-white"
+        className="postlink w-72 h-[25rem] shadow-xl dark:shadow-sm dark:shadow-slate-800 dark:border-slate-800 dark:border rounded-2xl cursor-pointer dark:bg-slate-900 bg-white"
       >
         <article>
           <div className="w-full h-44 relative bg-[#04031b] rounded-t-2xl overflow-hidden">

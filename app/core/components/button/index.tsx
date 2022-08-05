@@ -9,6 +9,7 @@ interface Props {
   color?: string
   type?: "button" | "submit" | "reset"
   disabled?: boolean
+  id?: string
   width?: string
   className?: string
 }
@@ -21,9 +22,17 @@ const Button: React.FunctionComponent<Props> = ({
   color,
   type,
   disabled,
+  id,
   width,
   className,
 }) => {
+  const checkIdExists = (id: string): boolean => {
+    const element = document.getElementById(id)
+    if (!element) {
+      return false
+    }
+    return true
+  }
   return (
     <motion.button
       whileHover={{ background: bgHover || "#1c8aff", scale: 1.05 }}
@@ -34,6 +43,7 @@ const Button: React.FunctionComponent<Props> = ({
       onClick={onClick}
       disabled={disabled}
       type={type}
+      id={id && checkIdExists(id) ? id : undefined}
     >
       {children}
     </motion.button>

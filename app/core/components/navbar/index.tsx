@@ -37,6 +37,7 @@ const Navbar: React.FunctionComponent = () => {
         <Link href="/">
           <a
             className={`${styles.top} group flex justify-end items-center pr-[11px] bg-[#010117] w-full h-12 cursor-pointer group-nav-hover:px-[0.7rem] sm:bg-transparent sm:justify-center sm:h-full sm:p-0 sm:mx-2`}
+            id="home"
           >
             <>
               <h1

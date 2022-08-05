@@ -11,7 +11,10 @@ const NavItem: React.FunctionComponent<Props> = ({ link }) => {
   return (
     <li>
       <Link href={link.href}>
-        <a className="group list-none w-full flex items-center cursor-pointer py-[0.7rem] transition-all duration-200 pl-[0.7rem] hover:bg-[#00005c81] sm:h-full sm:w-12 sm:m-[0.4rem]">
+        <a
+          className="group list-none w-full flex items-center cursor-pointer py-[0.7rem] transition-all duration-200 pl-[0.7rem] hover:bg-[#00005c81] sm:h-full sm:w-12 sm:m-[0.4rem]"
+          id={link.text.toLowerCase().replaceAll(" ", "-")}
+        >
           <Image
             className="transition-all duration-200 z-[2] group-hover:invert"
             src={link.imageURL}
