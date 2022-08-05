@@ -1,5 +1,4 @@
 {
-  // "parser": "@typescript-eslint/parser",
   "plugins": ["cypress", "@typescript-eslint", "chai-friendly"],
   "rules": {
     "cypress/no-assigning-return-values": "error",
@@ -8,9 +7,6 @@
     "cypress/no-force": "warn",
     "cypress/no-async-tests": "error",
     "cypress/no-pause": "error"
-    // "@typescript-eslint/ban-types": "error",
-    // "@typescript-eslint/no-unsafe-member-access": "error",
-    // "@typescript-eslint/no-unsafe-assignment": "error"
   },
   "env": {
     "cypress/globals": true
