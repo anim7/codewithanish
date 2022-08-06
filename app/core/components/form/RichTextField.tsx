@@ -19,7 +19,6 @@ export const RichTextField: React.FunctionComponent<Props> = ({ value, setValue 
     setTimeoutId(
       setTimeout(() => {
         setValue(document.querySelector(".ql-editor")!.innerHTML)
-        console.log(value)
       }, 2000)
     )
     //eslint-disable-next-line
