@@ -52,7 +52,7 @@ const TechnologiesList: React.FunctionComponent<Props> = ({ techs }) => {
                 onContextMenu={(e) => {
                   if (session.role === "ADMIN") {
                     e.preventDefault()
-                    setPosition({ x: e.clientX, y: e.clientY })
+                    setPosition({ x: e.pageX, y: e.pageY })
                     setClickedId(tech.id)
                     setVisible(true)
                   }
