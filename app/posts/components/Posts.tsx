@@ -28,6 +28,7 @@ const Posts: React.FunctionComponent<Props> = ({ posts }) => {
   const handleDelete = async () => {
     await deletePostMutation({ id: clickedId })
     setVisible(false)
+    setP(p.filter((post) => post.id !== clickedId))
   }
 
   const handleClickOutside = () => {
