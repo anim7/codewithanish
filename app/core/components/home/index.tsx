@@ -28,7 +28,7 @@ const Home: React.FunctionComponent = () => {
           <h2 className="text-black dark:text-white text-[1.6rem] mt-24">Contact Me</h2>
           <p className="text-black dark:text-white text-[1.1rem]">
             Send me an email at{" "}
-            <a href="mailto:anishpandit0703@gmail.com" className="text-[#3d63cc] hover:underline">
+            <a href="mailto:anishpandit0703@gmail.com" className="text-link">
               anishpandit0703@gmail.com
             </a>
           </p>
