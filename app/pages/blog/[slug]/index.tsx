@@ -1,18 +1,13 @@
 import { Suspense } from "react"
 import {
   Head,
-  Link,
-  useRouter,
   useQuery,
   useParam,
   BlitzPage,
-  useMutation,
-  Routes,
   GetServerSideProps,
   QueryClient,
   getQueryKey,
   invokeWithMiddleware,
-  useParams,
   dehydrate,
 } from "blitz"
 import Layout from "app/core/layouts/Layout"
@@ -24,7 +19,15 @@ export const Post = () => {
   const slug = useParam("slug", "string")
   const [post] = useQuery(getPost, { slug: slug })
 
-  return <PostComponent post={post} />
+  return (
+    <>
+      <Head>
+        <meta name="description" content={post.summary} />
+        <meta name="keywords" content={post.keywords} />
+      </Head>
+      <PostComponent post={post} />
+    </>
+  )
 }
 
 const ShowPostPage: BlitzPage = () => {

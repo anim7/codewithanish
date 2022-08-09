@@ -11,6 +11,7 @@ export const CreatePost = z.object({
   userId: z.number(),
   published: z.boolean(),
   image: z.string(),
+  keywords: z.string(),
 })
 
 export default resolver.pipe(

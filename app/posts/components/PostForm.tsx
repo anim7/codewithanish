@@ -20,6 +20,7 @@ export function PostForm<S extends z.ZodType<any, any>>(
       <LabeledTextField name="summary" label="Summary" placeholder="Summary" />
       <LabeledTextField name="image" label="Image" placeholder="Image" />
       <LabeledTextField name="slug" label="Slug" placeholder="Slug" />
+      <LabeledTextField name="keywords" label="Keywords" placeholder="Keywords" />
     </Form>
   )
 }

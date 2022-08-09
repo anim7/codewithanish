@@ -14,6 +14,7 @@ export const UpdatePost = z.object({
   published: z.boolean().optional(),
   publishedAt: z.date().optional(),
   image: z.string(),
+  keywords: z.string(),
 })
 
 export default resolver.pipe(
