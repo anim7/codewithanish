@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { Link, Routes, useMutation, useSession } from "blitz"
 import type Position from "app/types/position"
 import deletePost from "../mutations/deletePost"
-import Button from "app/core/components/button"
+import ContextMenu from "app/core/components/menu"
 
 interface Props {
   posts: Post[]
@@ -76,13 +76,13 @@ const Posts: React.FunctionComponent<Props> = ({ posts }) => {
         </div>
       </motion.main>
       {visible && (
-        <ul style={{ top: `${position.y}px`, left: `${position.x}px`, position: "absolute" }}>
-          <li>
-            <Button onClick={handleDelete} width="10rem" bg="#e60000" bgHover="red">
-              Delete
-            </Button>
-          </li>
-        </ul>
+        <ContextMenu
+          position={position}
+          handleDelete={handleDelete}
+          editPageHref={Routes.EditPostPage({
+            slug: p.filter((post) => post.id === clickedId)[0]!.slug,
+          })}
+        />
       )}
     </>
   )

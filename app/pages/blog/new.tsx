@@ -38,9 +38,8 @@ const NewPostComponent = () => {
           onSubmit={async (values) => {
             try {
               values.content = richText
-              values.metaTitle = "anish"
               values.published = true
-              values.userId = 1
+              values.userId = session.userId || 1
               const post = await createPostMutation(values)
               router.push(Routes.ShowPostPage({ slug: post.slug }))
             } catch (error: any) {

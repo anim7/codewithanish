@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import Position from "app/types/position"
 import Button from "app/core/components/button"
 import deleteTechnology from "../mutations/deleteTechnology"
+import ContextMenu from "app/core/components/menu"
 
 interface Props {
   techs: Technology[]
@@ -76,29 +77,31 @@ const TechnologiesList: React.FunctionComponent<Props> = ({ techs }) => {
               </motion.a>
             )
           })}
-          <Link href={Routes.NewTechnologyPage()}>
-            <motion.a
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.02 }}
-              className="flex items-center justify-center text-gray-300 bg-white rounded shadow-xl cursor-pointer h-52 dark:bg-slate-900 dark:shadow-sm dark:shadow-slate-800 dark:border-slate-800 dark:border dark:text-slate-700 font-extralight text-[6rem]"
-            >
-              +
-            </motion.a>
-          </Link>
+          {session.role === "ADMIN" && (
+            <Link href={Routes.NewTechnologyPage()}>
+              <motion.a
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.02 }}
+                className="flex items-center justify-center text-gray-300 bg-white rounded shadow-xl cursor-pointer h-52 dark:bg-slate-900 dark:shadow-sm dark:shadow-slate-800 dark:border-slate-800 dark:border dark:text-slate-700 font-extralight text-[6rem]"
+              >
+                +
+              </motion.a>
+            </Link>
+          )}
         </div>
       </div>
       {visible && (
-        <ul style={{ top: `${position.y}px`, left: `${position.x}px`, position: "absolute" }}>
-          <li>
-            <Button onClick={handleDelete} width="10rem" bg="#e60000" bgHover="red">
-              Delete
-            </Button>
-          </li>
-        </ul>
+        <ContextMenu
+          position={position}
+          handleDelete={handleDelete}
+          editPageHref={Routes.EditTechnologyPage({
+            technologyId: technologies.filter((tech) => tech.id === clickedId)[0]!.id,
+          })}
+        />
       )}
     </>
   )

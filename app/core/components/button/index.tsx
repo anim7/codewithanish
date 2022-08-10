@@ -12,6 +12,9 @@ interface Props {
   id?: string
   width?: string
   className?: string
+  animate?: boolean
+  marginX?: string
+  marginY?: string
 }
 
 const Button: React.FunctionComponent<Props> = ({
@@ -25,6 +28,9 @@ const Button: React.FunctionComponent<Props> = ({
   id,
   width,
   className,
+  animate = true,
+  marginX = "0",
+  marginY = "1rem",
 }) => {
   const checkIdExists = (id: string): boolean => {
     const element = document.getElementById(id)
@@ -35,11 +41,19 @@ const Button: React.FunctionComponent<Props> = ({
   }
   return (
     <motion.button
-      whileHover={{ background: bgHover || "#1c8aff", scale: 1.05 }}
-      className={`p-[0.2rem] my-4 rounded-[0.5rem] ${className}`}
-      whileTap={{ scale: 0.95 }}
+      className={`p-[0.2rem] rounded-[0.5rem] ${className}`}
+      whileHover={{
+        background: bgHover || "#1c8aff",
+        scale: animate ? 1.05 : 1,
+      }}
+      whileTap={{ scale: animate ? 0.95 : 1 }}
       transition={{ duration: 0.02 }}
-      style={{ background: bg || "#007bff", color: color || "white", width: width || "100%" }}
+      style={{
+        background: bg || "#007bff",
+        color: color || "white",
+        width: width || "100%",
+        margin: `${marginY} ${marginX} `,
+      }}
       onClick={onClick}
       disabled={disabled}
       type={type}

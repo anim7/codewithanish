@@ -24,7 +24,23 @@ export const Post = () => {
   const slug = useParam("slug", "string")
   const [post] = useQuery(getPost, { slug: slug })
 
-  return <PostComponent post={post} />
+  return (
+    <>
+      <Head>
+        <title>CodeWithAnish - {post.title}</title>
+        <meta name="description" content={post.summary} />
+        <meta name="og:title" content={post.title} />
+        <meta name="og:description" content={post.summary} />
+        <meta name="og:image" content={post.image} />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={post.summary} />
+        <meta name="twitter:image" content={post.image} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="keywords" content={post.metaTitle} />
+      </Head>
+      <PostComponent post={post} />
+    </>
+  )
 }
 
 const ShowPostPage: BlitzPage = () => {

@@ -19,7 +19,6 @@ export const EditPost = () => {
   const router = useRouter()
   const slug = useParam("slug", "string")
   const session = useSession()
-  const [richText, setRichText] = useState("")
   const [post, { setQueryData }] = useQuery(
     getPost,
     { slug: slug },
@@ -28,7 +27,7 @@ export const EditPost = () => {
     }
   )
   const [updatePostMutation] = useMutation(updatePost)
-
+  const [richText, setRichText] = useState(post.content)
   if (session.role !== "ADMIN") {
     router.push(Routes.PostsPage())
   }
@@ -41,17 +40,18 @@ export const EditPost = () => {
         </Head>
 
         <div>
-          <h1>Edit Post {post.id}</h1>
-          <pre>{JSON.stringify(post, null, 2)}</pre>
-
+          <h1 className="text-black dark:text-white text-[2rem] ml-12 sm:ml-0 text-center">
+            Edit Post {post.id}
+          </h1>
           <PostForm
             submitText="Update Post"
-            value={richText}
+            value={post.content}
             setValue={setRichText}
             schema={updatePostSchema}
             initialValues={post}
             onSubmit={async (values) => {
               try {
+                values.content = richText
                 const updated = await updatePostMutation(values)
                 await setQueryData(updated)
                 router.push(Routes.ShowPostPage({ slug: updated.slug }))

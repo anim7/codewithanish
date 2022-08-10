@@ -25,6 +25,11 @@ const Navbar: React.FunctionComponent = () => {
       imageURL: "/tech_stack.png",
       href: Routes.TechnologiesPage(),
     },
+    {
+      text: "Projects",
+      imageURL: "/project.png",
+      href: Routes.ProjectsPage(),
+    },
   ]
   return (
     <motion.nav

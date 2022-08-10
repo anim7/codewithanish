@@ -41,8 +41,6 @@ export const EditTechnology = () => {
 
         <div>
           <h1>Edit Technology {technology.id}</h1>
-          <pre>{JSON.stringify(technology, null, 2)}</pre>
-
           <TechnologyForm
             submitText="Update Technology"
             schema={UpdateTechnologySchema}

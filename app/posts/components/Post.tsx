@@ -19,6 +19,9 @@ const PostComponent: React.FunctionComponent<Props> = ({ post }) => {
     await deletePostMutation({ id: post.id })
     router.push(Routes.PostsPage())
   }
+  const handleEdit = () => {
+    router.push(Routes.EditPostPage({ slug: post.slug }))
+  }
   return (
     <div
       className={`${styles.container} flex flex-col items-center min-h-screen p-4 px-20 ml-12 sm:px-3 sm:ml-0`}
@@ -34,9 +37,20 @@ const PostComponent: React.FunctionComponent<Props> = ({ post }) => {
         </p>
       </article>
       {session.role === "ADMIN" && (
-        <Button width="10rem" bg="#e60000" bgHover="red" onClick={handleDelete}>
-          Delete
-        </Button>
+        <>
+          <Button width="10rem" bg="#e60000" bgHover="red" onClick={handleDelete} marginY="0.2rem">
+            Delete
+          </Button>
+          <Button
+            width="10rem"
+            bg="rgb(0 111 230)"
+            bgHover="#007bff"
+            onClick={handleEdit}
+            marginY="0.2rem"
+          >
+            Edit
+          </Button>
+        </>
       )}
     </div>
   )

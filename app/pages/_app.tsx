@@ -110,6 +110,19 @@ export default function App({ Component, pageProps }: AppProps) {
                 <meta name="application-name" content="CodeWithAnish" />
                 <meta name="msapplication-tooltip" content="" />
                 <meta name="msapplication-starturl" content="/" />
+                <meta name="og:title" content="CodeWithAnish" />
+                <meta
+                  name="og:description"
+                  content="CodeWithAnish is my personal website, where I write posts about software development"
+                />
+                <meta name="og:image" content="/favicon.ico" />
+                <meta name="twitter:title" content="CodeWithAnish" />
+                <meta
+                  name="twitter:description"
+                  content="CodeWithAnish is my personal website, where I write posts about software development"
+                />
+                <meta name="twitter:image" content="favicon.ico" />
+                <meta name="twitter:card" content="summary_large_image" />
               </Head>
               {loading && (
                 <LoadingBar

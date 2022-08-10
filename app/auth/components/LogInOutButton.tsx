@@ -32,6 +32,7 @@ const LogInOut: React.FunctionComponent = () => {
           width="fit-content"
           onClick={handleClick}
           id="logout"
+          marginY="0"
         >
           <Image
             className="dark:invert"
