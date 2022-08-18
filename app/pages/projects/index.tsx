@@ -11,6 +11,7 @@ import {
 import Layout from "app/core/layouts/Layout"
 import getProjects from "app/projects/queries/getProjects"
 import Projects from "app/projects/components/Projects"
+import ProjectsLoading from "app/projects/components/ProjectsLoading"
 
 export const ProjectsList = () => {
   const [{ projects }] = useQuery(getProjects, {
@@ -21,7 +22,7 @@ export const ProjectsList = () => {
 
 const ProjectsPage: BlitzPage = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<ProjectsLoading />}>
       <ProjectsList />
     </Suspense>
   )
