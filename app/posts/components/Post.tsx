@@ -1,11 +1,12 @@
+import { useRouter } from "next/router"
 import { Post } from "@prisma/client"
 import Button from "app/core/components/button"
-import { Routes, useMutation, useRouter, useSession } from "blitz"
 import React from "react"
 import getDate from "../../utils/dateutils"
 import deletePost from "../mutations/deletePost"
 import styles from "../styles/Post.module.scss"
 import "highlight.js/styles/night-owl.css"
+import { Routes, useMutation, useSession } from "blitz"
 
 interface Props {
   post: Post
@@ -26,7 +27,7 @@ const PostComponent: React.FunctionComponent<Props> = ({ post }) => {
     <div
       className={`${styles.container} flex flex-col items-center min-h-screen p-4 px-20 ml-12 sm:px-3 sm:ml-0`}
     >
-      <h2 className="text-[2rem] font-bold text-black dark:text-white">{post.title}</h2>
+      <h1 className="text-[2rem] font-bold text-black dark:text-white">{post.title}</h1>
       <article className="flex flex-col items-center w-full mt-4">
         <div
           className="text-[1.2rem] text-black dark:text-gray-300"

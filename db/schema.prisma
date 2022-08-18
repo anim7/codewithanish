@@ -92,7 +92,8 @@ model Project {
   title       String
   description String
   summary     String
-  githubLink  String
+  link1       String
+  link2       String
   image       String
   keywords    String
   slug        String

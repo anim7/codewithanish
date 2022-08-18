@@ -1,6 +1,6 @@
+import dynamic from "next/dynamic"
 import { Form, FormProps } from "app/core/components/form/Form"
 import { LabeledTextField } from "app/core/components/form/LabeledTextField"
-import { dynamic } from "blitz"
 import { z } from "zod"
 export { FORM_ERROR } from "app/core/components/form/Form"
 

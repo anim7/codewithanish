@@ -36,7 +36,7 @@ export const EditPost = () => {
     return (
       <>
         <Head>
-          <title>Edit Post {post.id}</title>
+          <title>CodeWithAnish - Edit Post {post.title}</title>
         </Head>
 
         <div>

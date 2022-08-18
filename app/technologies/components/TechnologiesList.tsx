@@ -1,5 +1,9 @@
+import Link from "next/link"
+import Image from "next/image"
+import { useSession } from "blitz"
+import { useMutation } from "blitz"
+import { Routes } from "blitz"
 import { Technology } from "@prisma/client"
-import { Image, Link, Routes, useMutation, useSession } from "blitz"
 import React, { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import Position from "app/types/position"
@@ -78,7 +82,7 @@ const TechnologiesList: React.FunctionComponent<Props> = ({ techs }) => {
             )
           })}
           {session.role === "ADMIN" && (
-            <Link href={Routes.NewTechnologyPage()}>
+            <Link href={Routes.NewTechnologyPage()} passHref>
               <motion.a
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}

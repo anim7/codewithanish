@@ -27,7 +27,6 @@ const ProjectsPage: BlitzPage = () => {
   )
 }
 
-ProjectsPage.authenticate = true
 ProjectsPage.getLayout = (page) => <Layout title="CodeWithAnish - Projects">{page}</Layout>
 
 export default ProjectsPage

@@ -1,18 +1,13 @@
 import { Suspense } from "react"
 import {
   Head,
-  Link,
-  useRouter,
   useQuery,
   useParam,
   BlitzPage,
-  useMutation,
-  Routes,
   GetServerSideProps,
   QueryClient,
   getQueryKey,
   invokeWithMiddleware,
-  useParams,
   dehydrate,
 } from "blitz"
 import Layout from "app/core/layouts/Layout"
@@ -46,7 +41,7 @@ export const Post = () => {
 const ShowPostPage: BlitzPage = () => {
   return (
     <div>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div className="min-h-screen" />}>
         <Post />
       </Suspense>
     </div>

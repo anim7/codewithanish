@@ -3,12 +3,11 @@ import db from "db"
 import { z } from "zod"
 
 const GetProject = z.object({
-  // This accepts type of undefined, but is required at runtime
-  id: z.number().optional().refine(Boolean, "Required"),
+  slug: z.string().optional().refine(Boolean, "Required"),
 })
 
-export default resolver.pipe(resolver.zod(GetProject), async ({ id }) => {
-  const project = await db.project.findFirst({ where: { id } })
+export default resolver.pipe(resolver.zod(GetProject), async ({ slug }) => {
+  const project = await db.project.findFirst({ where: { slug } })
 
   if (!project) throw new NotFoundError()
 

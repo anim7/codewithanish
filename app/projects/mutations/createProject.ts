@@ -7,7 +7,8 @@ export const CreateProject = z.object({
   description: z.string(),
   summary: z.string(),
   image: z.string(),
-  githubLink: z.string(),
+  link1: z.string(),
+  link2: z.string(),
   keywords: z.string(),
   slug: z.string(),
 })

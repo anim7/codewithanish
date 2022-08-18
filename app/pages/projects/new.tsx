@@ -1,7 +1,8 @@
-import { Link, useRouter, useMutation, BlitzPage, Routes } from "blitz"
+import { useRouter, useMutation, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import createProject from "app/projects/mutations/createProject"
 import { ProjectForm, FORM_ERROR } from "app/projects/components/ProjectForm"
+import { createProjectSchema } from "app/projects/validation"
 
 const NewProjectPage: BlitzPage = () => {
   const router = useRouter()
@@ -9,19 +10,24 @@ const NewProjectPage: BlitzPage = () => {
 
   return (
     <div>
-      <h1>Create New Project</h1>
-
+      <h1 className="text-[2rem] text-black dark:text-white font-bolder">Create New Project</h1>
       <ProjectForm
         submitText="Create Project"
-        // TODO use a zod schema for form validation
-        //  - Tip: extract mutation's schema into a shared `validations.ts` file and
-        //         then import and use it here
-        // schema={CreateProject}
-        // initialValues={{}}
+        schema={createProjectSchema}
+        initialValues={{
+          description: "",
+          title: "",
+          image: "",
+          keywords: "",
+          link1: "",
+          link2: "",
+          slug: "",
+          summary: "",
+        }}
         onSubmit={async (values) => {
           try {
             const project = await createProjectMutation(values)
-            router.push(Routes.ShowProjectPage({ projectId: project.id }))
+            router.push(Routes.ShowProjectPage({ slug: project.slug }))
           } catch (error: any) {
             console.error(error)
             return {
@@ -30,17 +36,13 @@ const NewProjectPage: BlitzPage = () => {
           }
         }}
       />
-
-      <p>
-        <Link href={Routes.ProjectsPage()}>
-          <a>Projects</a>
-        </Link>
-      </p>
     </div>
   )
 }
 
 NewProjectPage.authenticate = true
-NewProjectPage.getLayout = (page) => <Layout title={"Create New Project"}>{page}</Layout>
+NewProjectPage.getLayout = (page) => (
+  <Layout title={"CodeWithAnish - Create New Project"}>{page}</Layout>
+)
 
 export default NewProjectPage

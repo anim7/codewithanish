@@ -1,10 +1,10 @@
-import { Post } from "@prisma/client"
-import Image from "next/image"
 import Link from "next/link"
+import Image from "next/image"
+import { Routes } from "blitz"
+import { Post } from "@prisma/client"
 import React from "react"
 import getDate from "../../utils/dateutils"
 import { motion } from "framer-motion"
-import { Routes } from "blitz"
 
 interface Props {
   post: Post

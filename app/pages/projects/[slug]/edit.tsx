@@ -4,15 +4,15 @@ import Layout from "app/core/layouts/Layout"
 import getProject from "app/projects/queries/getProject"
 import updateProject from "app/projects/mutations/updateProject"
 import { ProjectForm, FORM_ERROR } from "app/projects/components/ProjectForm"
+import { createProjectSchema } from "app/projects/validation"
 
 export const EditProject = () => {
   const router = useRouter()
-  const projectId = useParam("projectId", "number")
+  const slug = useParam("slug", "string")
   const [project, { setQueryData }] = useQuery(
     getProject,
-    { id: projectId },
+    { slug: slug },
     {
-      // This ensures the query never refreshes and overwrites the form data while the user is editing.
       staleTime: Infinity,
     }
   )
@@ -21,19 +21,14 @@ export const EditProject = () => {
   return (
     <>
       <Head>
-        <title>Edit Project {project.id}</title>
+        <title>CodeWithAnish - Edit Project {project.title}</title>
       </Head>
 
       <div>
         <h1>Edit Project {project.id}</h1>
-        <pre>{JSON.stringify(project, null, 2)}</pre>
-
         <ProjectForm
           submitText="Update Project"
-          // TODO use a zod schema for form validation
-          //  - Tip: extract mutation's schema into a shared `validations.ts` file and
-          //         then import and use it here
-          // schema={UpdateProject}
+          schema={createProjectSchema}
           initialValues={project}
           onSubmit={async (values) => {
             try {
@@ -42,7 +37,7 @@ export const EditProject = () => {
                 ...values,
               })
               await setQueryData(updated)
-              router.push(Routes.ShowProjectPage({ projectId: updated.id }))
+              router.push(Routes.ShowProjectPage({ slug: updated.slug }))
             } catch (error: any) {
               console.error(error)
               return {
@@ -58,17 +53,9 @@ export const EditProject = () => {
 
 const EditProjectPage: BlitzPage = () => {
   return (
-    <div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <EditProject />
-      </Suspense>
-
-      <p>
-        <Link href={Routes.ProjectsPage()}>
-          <a>Projects</a>
-        </Link>
-      </p>
-    </div>
+    <Suspense fallback={<div className="min-h-screen" />}>
+      <EditProject />
+    </Suspense>
   )
 }
 

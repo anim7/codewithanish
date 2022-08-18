@@ -1,8 +1,11 @@
+import Link from "next/link"
+import { useSession } from "blitz"
+import { useMutation } from "blitz"
+import { Routes } from "blitz"
 import { Post } from "@prisma/client"
 import React, { useEffect, useState } from "react"
 import PostLink from "./PostLink"
 import { motion } from "framer-motion"
-import { Link, Routes, useMutation, useSession } from "blitz"
 import type Position from "app/types/position"
 import deletePost from "../mutations/deletePost"
 import ContextMenu from "app/core/components/menu"
@@ -40,7 +43,7 @@ const Posts: React.FunctionComponent<Props> = ({ posts }) => {
         transition={{ duration: 0.2 }}
         className="flex flex-col items-center justify-center min-h-screen py-6 ml-12 dark:text-white sm:ml-0"
       >
-        <h2 className="text-[2rem] font-bold">Blog</h2>
+        <h1 className="text-[2rem] text-black dark:text-white font-bold">Blog</h1>
         <div className="grid items-center justify-center w-full gap-4 p-4 pl-12 grid-cols-posts sm:pl-8">
           {p.map((post, key) => {
             return (
@@ -59,7 +62,7 @@ const Posts: React.FunctionComponent<Props> = ({ posts }) => {
             )
           })}
           {session.role === "ADMIN" && (
-            <Link href={Routes.NewPostPage()}>
+            <Link href={Routes.NewPostPage()} passHref>
               <motion.a
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
