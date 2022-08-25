@@ -39,7 +39,7 @@ const Navbar: React.FunctionComponent = () => {
       className={`${styles.container} flex justify-between items-center flex-col z-10 fixed transition-all duration-200 text-gray-500 h-screen w-12 bg-[#0d121b] hover:w-64 sm:static sm:w-full sm:h-12 sm:flex-row`}
     >
       <div className="w-full sm:flex sm:items-center sm:h-full sm:w-fit">
-        <Link href="/">
+        <Link href={Routes.Home()}>
           <a
             className={`${styles.top} group flex justify-end items-center pr-[11px] bg-[#010117] w-full h-12 cursor-pointer group-nav-hover:px-[0.7rem] sm:bg-transparent sm:justify-center sm:h-full sm:p-0 sm:mx-2`}
             id="home"
