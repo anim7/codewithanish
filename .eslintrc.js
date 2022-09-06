@@ -1,3 +1,2 @@
-module.exports = {
-  extends: ["blitz"],
-}
+module.exports = require("@blitzjs/next/eslint")
+// , "next/core-web-vitals"],

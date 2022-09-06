@@ -1,4 +1,5 @@
-import { resolver, NotFoundError } from "blitz"
+import { resolver } from "@blitzjs/rpc"
+import { NotFoundError } from "blitz"
 import db from "db"
 import { z } from "zod"
 

@@ -1,12 +1,12 @@
-import Image from "next/image"
 import Link from "next/link"
+import Image from "next/image"
+import { Routes } from "@blitzjs/next"
 import React, { useContext } from "react"
 import styles from "app/core/styles/Navbar.module.scss"
 import { ThemeContext } from "app/core/components/theme/ThemeContext"
 import NavItem from "./navitem"
 import { toggleTheme } from "app/utils/navutils"
 import LinkInterface from "app/types/link"
-import { Routes } from "blitz"
 import { motion } from "framer-motion"
 
 const Navbar: React.FunctionComponent = () => {
@@ -18,17 +18,17 @@ const Navbar: React.FunctionComponent = () => {
     {
       text: "Blog",
       imageURL: "/blog.png",
-      href: Routes.PostsPage(),
+      href: Routes.Posts(),
     },
     {
       text: "Tech Stack",
       imageURL: "/tech_stack.png",
-      href: Routes.TechnologiesPage(),
+      href: Routes.Technologies(),
     },
     {
       text: "Projects",
       imageURL: "/project.png",
-      href: Routes.ProjectsPage(),
+      href: Routes.Projects(),
     },
   ]
   return (

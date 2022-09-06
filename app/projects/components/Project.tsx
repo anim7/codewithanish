@@ -1,7 +1,7 @@
-import { useSession } from "blitz"
+import { Routes } from "@blitzjs/next"
+import { useMutation } from "@blitzjs/rpc"
+import { useSession } from "@blitzjs/auth"
 import { useRouter } from "next/router"
-import { useMutation } from "blitz"
-import { Routes } from "blitz"
 import { Project as ProjectInterface } from "@prisma/client"
 import Button from "app/core/components/button"
 import React from "react"
@@ -17,10 +17,10 @@ const Project: React.FunctionComponent<Props> = ({ project }) => {
   const [deleteProjectMutation] = useMutation(deleteProject)
   const handleDelete = async () => {
     await deleteProjectMutation({ id: project.id })
-    router.push(Routes.ProjectsPage())
+    await router.push(Routes.Projects())
   }
   const handleEdit = () => {
-    router.push(Routes.EditProjectPage({ slug: project.slug }))
+    void router.push(Routes.EditProject({ slug: project.slug }))
   }
   return (
     <div className="flex flex-col items-center min-h-screen p-4 px-20 ml-12 sm:px-3 sm:ml-0">

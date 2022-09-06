@@ -1,3 +1,6 @@
+import { useSession } from "@blitzjs/auth"
+import { useMutation } from "@blitzjs/rpc"
+import { Routes } from "@blitzjs/next"
 import { useRouter } from "next/router"
 import { Post } from "@prisma/client"
 import Button from "app/core/components/button"
@@ -6,7 +9,6 @@ import getDate from "../../utils/dateutils"
 import deletePost from "../mutations/deletePost"
 import styles from "../styles/Post.module.scss"
 import "highlight.js/styles/night-owl.css"
-import { Routes, useMutation, useSession } from "blitz"
 
 interface Props {
   post: Post
@@ -18,10 +20,10 @@ const PostComponent: React.FunctionComponent<Props> = ({ post }) => {
   const [deletePostMutation] = useMutation(deletePost)
   const handleDelete = async () => {
     await deletePostMutation({ id: post.id })
-    router.push(Routes.PostsPage())
+    await router.push(Routes.Posts())
   }
   const handleEdit = () => {
-    router.push(Routes.EditPostPage({ slug: post.slug }))
+    void router.push(Routes.EditPost({ slug: post.slug }))
   }
   return (
     <div

@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Routes } from "blitz"
+import { Routes } from "@blitzjs/next"
 import { Project } from "@prisma/client"
 import React from "react"
 import { motion } from "framer-motion"

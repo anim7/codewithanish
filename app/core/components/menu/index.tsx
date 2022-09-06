@@ -1,5 +1,7 @@
+import Link from "next/link"
+import { Routes } from "@blitzjs/next"
 import Position from "app/types/position"
-import { Link, Routes, RouteUrlObject } from "blitz"
+import { RouteUrlObject } from "blitz"
 import React from "react"
 import Button from "../button"
 
