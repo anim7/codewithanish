@@ -1,5 +1,5 @@
-import { Ctx } from "blitz"
+import { BlitzCtx } from "@blitzjs/auth"
 
-export default async function logout(_: any, ctx: Ctx) {
+export default async function logout(_: any, ctx: BlitzCtx) {
   return await ctx.session.$revoke()
 }
