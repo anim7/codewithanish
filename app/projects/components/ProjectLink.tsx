@@ -55,7 +55,7 @@ const ProjectLink: React.FunctionComponent<Props> = ({ project, onContextMenu })
         )}
       </div>
       <div className="flex flex-col mt-3 ml-4">
-        <Link href={Routes.ShowProjectPage({ slug: project.slug })}>
+        <Link href={Routes.Project({ slug: project.slug })}>
           <a className="w-fit">
             <h2 className="text-black dark:text-white text-[1.5rem] font-bolder hover:text-gray-500 inline-block dark:hover:text-gray-400">
               {project.title}

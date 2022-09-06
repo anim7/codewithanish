@@ -1,8 +1,9 @@
-import { SecurePassword } from "@blitzjs/auth"
+import { BlitzCtx, SecurePassword } from "@blitzjs/auth"
 import { resolver } from "@blitzjs/rpc"
 import db from "db"
 import { Login } from "../validations"
 import { Role } from "types"
+import { AuthenticationError } from "blitz"
 
 export const authenticateUser = async (rawEmail: string, rawPassword: string) => {
   const { email, password } = Login.parse({ email: rawEmail, password: rawPassword })
@@ -20,7 +21,7 @@ export const authenticateUser = async (rawEmail: string, rawPassword: string) =>
   return rest
 }
 
-export default resolver.pipe(resolver.zod(Login), async ({ email, password }, ctx) => {
+export default resolver.pipe(resolver.zod(Login), async ({ email, password }, ctx: BlitzCtx) => {
   const user = await authenticateUser(email, password)
 
   await ctx.session.$create({ userId: user.id, role: user.role as unknown as Role })

@@ -81,7 +81,7 @@ const TechnologiesList: React.FunctionComponent<Props> = ({ techs }) => {
             )
           })}
           {session.role === "ADMIN" && (
-            <Link href={Routes.NewTechnologyPage()} passHref>
+            <Link href={Routes.NewTechnology()} passHref>
               <motion.a
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -101,7 +101,7 @@ const TechnologiesList: React.FunctionComponent<Props> = ({ techs }) => {
         <ContextMenu
           position={position}
           handleDelete={handleDelete}
-          editPageHref={Routes.EditTechnologyPage({
+          editPageHref={Routes.EditTechnology({
             technologyId: technologies.filter((tech) => tech.id === clickedId)[0]!.id,
           })}
         />

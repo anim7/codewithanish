@@ -66,7 +66,7 @@ const Projects: React.FunctionComponent<Props> = ({ projects }) => {
       {visible && (
         <ContextMenu
           position={position}
-          editPageHref={Routes.EditProjectPage({
+          editPageHref={Routes.EditProject({
             slug: p.filter((project) => project.id === clickedId)[0]!.slug,
           })}
           handleDelete={handleDelete}

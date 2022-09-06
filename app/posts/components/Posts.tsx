@@ -62,7 +62,7 @@ const Posts: React.FunctionComponent<Props> = ({ posts }) => {
             )
           })}
           {session.role === "ADMIN" && (
-            <Link href={Routes.NewPostPage()} passHref>
+            <Link href={Routes.NewPost()} passHref>
               <motion.a
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -82,7 +82,7 @@ const Posts: React.FunctionComponent<Props> = ({ posts }) => {
         <ContextMenu
           position={position}
           handleDelete={handleDelete}
-          editPageHref={Routes.EditPostPage({
+          editPageHref={Routes.EditPost({
             slug: p.filter((post) => post.id === clickedId)[0]!.slug,
           })}
         />

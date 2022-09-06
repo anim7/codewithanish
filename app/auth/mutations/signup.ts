@@ -1,10 +1,10 @@
-import { SecurePassword } from "@blitzjs/auth"
+import { BlitzCtx, SecurePassword } from "@blitzjs/auth"
 import { resolver } from "@blitzjs/rpc"
 import db from "db"
 import { Signup } from "app/auth/validations"
 import { Role } from "types"
 
-export default resolver.pipe(resolver.zod(Signup), async ({ email, password }, ctx) => {
+export default resolver.pipe(resolver.zod(Signup), async ({ email, password }, ctx: BlitzCtx) => {
   const hashedPassword = await SecurePassword.hash(password.trim())
   const user = await db.user.create({
     data: { email: email.toLowerCase().trim(), hashedPassword, role: "USER" },

@@ -13,7 +13,7 @@ interface Props {
 
 const PostLink: React.FunctionComponent<Props> = ({ post, onContextMenu }) => {
   return (
-    <Link href={Routes.ShowPostPage({ slug: post.slug })} passHref>
+    <Link href={Routes.Post({ slug: post.slug })} passHref>
       <motion.a
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

@@ -16,7 +16,7 @@ const LogInOut: React.FunctionComponent = () => {
   return (
     <>
       {session.userId === null ? (
-        <Link href={Routes.LoginPage()}>
+        <Link href={Routes.Login()}>
           <a className="absolute right-1 top-1 sm:top-14" id="login">
             <Image
               className="invert-[95%] dark:invert-[10%]"
