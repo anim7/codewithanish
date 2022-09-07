@@ -1,18 +1,14 @@
-import { gSSP } from "app/blitz-server"
+import { gSP } from "app/blitz-server"
 import Head from "next/head"
-import { GetServerSideProps } from "next"
-import { useParam, BlitzPage } from "@blitzjs/next"
-import { useQuery, QueryClient, getQueryKey, dehydrate } from "@blitzjs/rpc"
+import { BlitzPage } from "@blitzjs/next"
 import { Suspense } from "react"
 import Layout from "app/core/layouts/Layout"
 import getPost from "app/posts/queries/getPost"
 import { ParsedUrlQuery } from "querystring"
 import PostComponent from "app/posts/components/Post"
+import { InferGetStaticPropsType } from "next"
 
-export const PostComp = () => {
-  const slug = useParam("slug", "string")
-  const [post] = useQuery(getPost, { slug: slug })
-
+const Post: BlitzPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {
   return (
     <>
       <Head>
@@ -27,18 +23,10 @@ export const PostComp = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="keywords" content={post.metaTitle} />
       </Head>
-      <PostComponent post={post} />
-    </>
-  )
-}
-
-const Post: BlitzPage = () => {
-  return (
-    <div>
       <Suspense fallback={<div className="min-h-screen" />}>
-        <PostComp />
+        <PostComponent post={post} />
       </Suspense>
-    </div>
+    </>
   )
 }
 
@@ -50,16 +38,11 @@ interface Params extends ParsedUrlQuery {
   slug: string
 }
 
-// export const getServerSideProps: GetServerSideProps = gSSP(async (ctx) => {
-//   const queryClient = new QueryClient()
-//   const { slug } = ctx.params as Params
-//   const queryKey = getQueryKey(getPost, { slug: slug })
-//   await getQueryClient().prefetchQuery(queryKey, () =>
-//     invokeWithMiddleware(getPost, { slug: slug }, ctx)
-//   )
-//   return {
-//     props: {
-//       dehydratedState: dehydrate(queryClient),
-//     },
-//   }
-// })
+export const getStaticProps = gSP(async ({ params, ctx }) => {
+  const { slug } = params as Params
+  const post = await getPost({ slug: slug }, ctx)
+  return {
+    props: { post: post },
+    revalidate: 10,
+  }
+})

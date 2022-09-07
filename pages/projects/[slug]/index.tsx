@@ -1,18 +1,14 @@
-import { gSSP } from "app/blitz-server"
+import { gSP } from "app/blitz-server"
 import Head from "next/head"
-import { GetServerSideProps } from "next"
+import { InferGetStaticPropsType } from "next"
 import { useParam, BlitzPage } from "@blitzjs/next"
-import { useQuery, QueryClient, getQueryKey, dehydrate } from "@blitzjs/rpc"
 import { Suspense } from "react"
 import Layout from "app/core/layouts/Layout"
 import getProject from "app/projects/queries/getProject"
 import { ParsedUrlQuery } from "querystring"
 import ProjectComponent from "app/projects/components/Project"
 
-export const ProjectComp = () => {
-  const slug = useParam("slug", "string")
-  const [project] = useQuery(getProject, { slug: slug })
-
+const Project: BlitzPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ project }) => {
   return (
     <>
       <Head>
@@ -27,16 +23,10 @@ export const ProjectComp = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="keywords" content={project.keywords} />
       </Head>
-      <ProjectComponent project={project} />
+      <Suspense fallback={<div className="min-h-screen" />}>
+        <ProjectComponent project={project} />
+      </Suspense>
     </>
-  )
-}
-
-const Project: BlitzPage = () => {
-  return (
-    <Suspense fallback={<div className="min-h-screen" />}>
-      <ProjectComp />
-    </Suspense>
   )
 }
 
@@ -48,16 +38,11 @@ interface Params extends ParsedUrlQuery {
   slug: string
 }
 
-// export const getServerSideProps: GetServerSideProps = gSSP(async (ctx) => {
-//   const queryClient = new QueryClient()
-//   const { slug } = ctx.params as Params
-//   const queryKey = getQueryKey(getProject, { slug: slug })
-//   await getQueryClient().prefetchQuery(queryKey, () =>
-//     invokeWithMiddleware(getProject, { slug: slug }, ctx)
-//   )
-//   return {
-//     props: {
-//       dehydratedState: dehydrate(queryClient),
-//     },
-//   }
-// })
+export const getStaticProps = gSP(async ({ params, ctx }) => {
+  const { slug } = params as Params
+  const project = await getProject({ slug: slug }, ctx)
+  return {
+    props: { project: project },
+    revalidate: 10,
+  }
+})

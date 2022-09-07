@@ -1,24 +1,17 @@
-import { gSSP } from "app/blitz-server"
-import { GetServerSideProps } from "next"
-import { useQuery, QueryClient, dehydrate, getQueryKey } from "@blitzjs/rpc"
+import { gSP } from "app/blitz-server"
+import { InferGetStaticPropsType } from "next"
 import { BlitzPage } from "@blitzjs/next"
 import { Suspense } from "react"
 import Layout from "app/core/layouts/Layout"
 import getProjects from "app/projects/queries/getProjects"
 import ProjectsComponent from "app/projects/components/Projects"
 import ProjectsLoading from "app/projects/components/ProjectsLoading"
+import { Project } from "@prisma/client"
 
-export const ProjectsList = () => {
-  const [{ projects }] = useQuery(getProjects, {
-    orderBy: { id: "asc" },
-  })
-  return <ProjectsComponent projects={projects} />
-}
-
-const Projects: BlitzPage = () => {
+const Projects: BlitzPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ projects }) => {
   return (
     <Suspense fallback={<ProjectsLoading />}>
-      <ProjectsList />
+      <ProjectsComponent projects={projects} />
     </Suspense>
   )
 }
@@ -27,13 +20,11 @@ Projects.getLayout = (page) => <Layout title="CodeWithAnish - Projects">{page}</
 
 export default Projects
 
-// export const getServerSideProps: GetServerSideProps = gSSP(async (ctx) => {
-//   const queryClient = new QueryClient()
-//   const queryKey = getQueryKey(getProjects, null)
-//   await getQueryClient().prefetchQuery(queryKey, () => invokeWithMiddleware(getProjects, null, ctx))
-//   return {
-//     props: {
-//       dehydratedState: dehydrate(queryClient),
-//     },
-//   }
-// })
+export const getStaticProps = gSP(async ({ ctx }) => {
+  const res = await getProjects({}, ctx)
+  const projects: Project[] = res.projects
+  return {
+    props: { projects: projects },
+    revalidate: 10,
+  }
+})
