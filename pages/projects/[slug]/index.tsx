@@ -1,7 +1,7 @@
 import { gSP } from "app/blitz-server"
 import Head from "next/head"
-import { InferGetStaticPropsType } from "next"
-import { useParam, BlitzPage } from "@blitzjs/next"
+import { GetStaticPaths, InferGetStaticPropsType } from "next"
+import { BlitzPage } from "@blitzjs/next"
 import { Suspense } from "react"
 import Layout from "app/core/layouts/Layout"
 import getProject from "app/projects/queries/getProject"
@@ -36,6 +36,13 @@ export default Project
 
 interface Params extends ParsedUrlQuery {
   slug: string
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [{ params: { slug: "codewithanish" } }],
+    fallback: true,
+  }
 }
 
 export const getStaticProps = gSP(async ({ params, ctx }) => {

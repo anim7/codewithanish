@@ -21,7 +21,9 @@ const NewTechnologyComponent: React.FunctionComponent = () => {
   if (session.role === "ADMIN")
     return (
       <div>
-        <h1>Create New Technology</h1>
+        <h1 className="ml-[3.75rem] sm:ml-3 text-[2rem] text-black dark:text-white font-bolder">
+          Create New Technology
+        </h1>
 
         <TechnologyForm
           submitText="Add Tech"
@@ -45,12 +47,6 @@ const NewTechnologyComponent: React.FunctionComponent = () => {
             }
           }}
         />
-
-        <p>
-          <Link href={Routes.Technologies()}>
-            <a>Technologies</a>
-          </Link>
-        </p>
       </div>
     )
   else return <div className="min-h-screen" />

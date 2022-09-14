@@ -6,7 +6,7 @@ import Layout from "app/core/layouts/Layout"
 import getPost from "app/posts/queries/getPost"
 import { ParsedUrlQuery } from "querystring"
 import PostComponent from "app/posts/components/Post"
-import { InferGetStaticPropsType } from "next"
+import { GetStaticPaths, InferGetStaticPropsType } from "next"
 
 const Post: BlitzPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {
   return (
@@ -36,6 +36,13 @@ export default Post
 
 interface Params extends ParsedUrlQuery {
   slug: string
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [{ params: { slug: "how_to_make_a_fitbit_analog_clock_with_sweep_hand_motion_part1" } }],
+    fallback: true,
+  }
 }
 
 export const getStaticProps = gSP(async ({ params, ctx }) => {

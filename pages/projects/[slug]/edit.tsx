@@ -3,7 +3,7 @@ import Link from "next/link"
 import { useParam, BlitzPage, Routes } from "@blitzjs/next"
 import { useQuery, useMutation } from "@blitzjs/rpc"
 import { useRouter } from "next/router"
-import { Suspense } from "react"
+import { Suspense, useState } from "react"
 import Layout from "app/core/layouts/Layout"
 import getProject from "app/projects/queries/getProject"
 import updateProject from "app/projects/mutations/updateProject"
@@ -23,6 +23,7 @@ export const EditProjectComponent = () => {
   )
   const [updateProjectMutation] = useMutation(updateProject)
   const session = useSession()
+  const [richText, setRichText] = useState("")
 
   if (session.role !== "ADMIN") {
     void router.push(Routes.Posts())
@@ -39,9 +40,12 @@ export const EditProjectComponent = () => {
         <ProjectForm
           submitText="Update Project"
           schema={createProjectSchema}
+          value={richText}
+          setValue={setRichText}
           initialValues={project}
           onSubmit={async (values) => {
             try {
+              values.description = richText
               const updated = await updateProjectMutation({
                 id: project.id,
                 ...values,

@@ -72,7 +72,7 @@ const ProjectLink: React.FunctionComponent<Props> = ({ project, onContextMenu })
               target="_blank"
               rel="noopener noreferrer"
             >
-              <p>{project.link1}</p>
+              <p>{project.link1.split("://")[1]}</p>
             </a>
           </div>
           <div className="flex items-center mr-2">
@@ -83,7 +83,7 @@ const ProjectLink: React.FunctionComponent<Props> = ({ project, onContextMenu })
               target="_blank"
               rel="noopener noreferrer"
             >
-              <p>{project.link2}</p>
+              <p>{project.link2.split("://")[1]}</p>
             </a>
           </div>
         </div>

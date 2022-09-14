@@ -1,11 +1,12 @@
 export const getDate = (date: Date) => {
-  const year = date.getFullYear()
-  const month = getMonth(date.getMonth())
-  const day = date.getDate()
+  const d = new Date(date)
+  const year = d.getFullYear()
+  const month = getMonthName(d.getMonth())
+  const day = d.getDate()
   return `${day} ${month}, ${year}`
 }
 
-const getMonth = (index: number) => {
+const getMonthName = (index: number) => {
   const months = [
     "Jan",
     "Feb",

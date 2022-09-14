@@ -74,7 +74,8 @@
     "preview-email": "3.0.5",
     "prisma": "latest",
     "typescript": "latest",
-    "typescript-plugin-css-modules": "3.4.0"
+    "typescript-plugin-css-modules": "3.4.0",
+    "webpack": "5.74.0"
   },
   "private": true
 }

@@ -25,8 +25,11 @@ const Project: React.FunctionComponent<Props> = ({ project }) => {
   return (
     <div className="flex flex-col items-center min-h-screen p-4 px-20 ml-12 sm:px-3 sm:ml-0">
       <h1 className="text-[2rem] font-bold text-black dark:text-white">{project.title}</h1>
-      <article className="flex flex-col items-center w-full mt-4">
-        <p className="text-[1.2rem] text-black dark:text-gray-400">{project.description}</p>
+      <article className="flex flex-col items-center w-full mt-4 mb-10">
+        <div
+          className="text-[1.2rem] text-black dark:text-gray-400"
+          dangerouslySetInnerHTML={{ __html: project.description }}
+        />
       </article>
       {session.role === "ADMIN" && (
         <>
