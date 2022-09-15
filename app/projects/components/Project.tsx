@@ -6,6 +6,7 @@ import { Project as ProjectInterface } from "@prisma/client"
 import Button from "app/core/components/button"
 import React from "react"
 import deleteProject from "../mutations/deleteProject"
+import styles from "../styles/Project.module.scss"
 
 interface Props {
   project: ProjectInterface
@@ -23,7 +24,9 @@ const Project: React.FunctionComponent<Props> = ({ project }) => {
     void router.push(Routes.EditProject({ slug: project.slug }))
   }
   return (
-    <div className="flex flex-col items-center min-h-screen p-4 px-20 ml-12 sm:px-3 sm:ml-0">
+    <div
+      className={`${styles.container} flex flex-col items-center min-h-screen p-4 px-20 ml-12 sm:px-3 sm:ml-0`}
+    >
       <h1 className="text-[2rem] font-bold text-black dark:text-white">{project.title}</h1>
       <article className="flex flex-col items-center w-full mt-4 mb-10">
         <div

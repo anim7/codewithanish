@@ -1,0 +1,84 @@
+.container {
+  code,
+  pre {
+    background-color: rgb(20, 20, 20);
+    color: rgb(219, 219, 219);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    overflow: auto;
+    width: 100%;
+    white-space: pre-line;
+    word-wrap: break-word;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: bolder;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+    font-weight: 550;
+  }
+
+  h4 {
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+
+  a {
+    display: inline-block;
+    position: relative;
+    color: #3d63cc;
+  }
+
+  a::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #3d63cc;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+
+  a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(60, 60, 60, 0.7);
+    border-radius: 0.5rem;
+    &:hover {
+      background-color: rgba(57, 57, 57, 0.7);
+    }
+  }
+}
+
+@media all and (orientation: landscape) {
+  .container {
+    code,
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+  }
+}

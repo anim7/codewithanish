@@ -41,8 +41,8 @@ const NewProjectComponent: React.FunctionComponent = () => {
           }}
           onSubmit={async (values) => {
             try {
-              const project = await createProjectMutation(values)
               values.description = richText
+              const project = await createProjectMutation(values)
               await router.push(Routes.Project({ slug: project.slug }))
             } catch (error: any) {
               console.error(error)
