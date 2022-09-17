@@ -40,7 +40,7 @@ interface Params extends ParsedUrlQuery {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [{ params: { slug: "how_to_make_a_fitbit_analog_clock_with_sweep_hand_motion_part1" } }],
+    paths: [],
     fallback: true,
   }
 }

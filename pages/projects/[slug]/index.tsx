@@ -40,7 +40,7 @@ interface Params extends ParsedUrlQuery {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [{ params: { slug: "codewithanish" } }],
+    paths: [],
     fallback: true,
   }
 }
