@@ -7,8 +7,13 @@ import getPost from "app/posts/queries/getPost"
 import { ParsedUrlQuery } from "querystring"
 import PostComponent from "app/posts/components/Post"
 import { GetStaticPaths, InferGetStaticPropsType } from "next"
+import { useRouter } from "next/router"
 
 const Post: BlitzPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {
+  const router = useRouter()
+  if (router.isFallback) {
+    return <div className="min-h-screen" />
+  }
   return (
     <>
       <Head>

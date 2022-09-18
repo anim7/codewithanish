@@ -7,8 +7,13 @@ import Layout from "app/core/layouts/Layout"
 import getProject from "app/projects/queries/getProject"
 import { ParsedUrlQuery } from "querystring"
 import ProjectComponent from "app/projects/components/Project"
+import { useRouter } from "next/router"
 
 const Project: BlitzPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ project }) => {
+  const router = useRouter()
+  if (router.isFallback) {
+    return <div className="min-h-screen" />
+  }
   return (
     <>
       <Head>

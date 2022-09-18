@@ -1,27 +1,27 @@
 if (!self.define) {
   let e,
-    s = {}
-  const n = (n, i) => (
-    (n = new URL(n + ".js", i).href),
-    s[n] ||
-      new Promise((s) => {
+    n = {}
+  const s = (s, i) => (
+    (s = new URL(s + ".js", i).href),
+    n[s] ||
+      new Promise((n) => {
         if ("document" in self) {
           const e = document.createElement("script")
-          ;(e.src = n), (e.onload = s), document.head.appendChild(e)
-        } else (e = n), importScripts(n), s()
+          ;(e.src = s), (e.onload = n), document.head.appendChild(e)
+        } else (e = s), importScripts(s), n()
       }).then(() => {
-        let e = s[n]
-        if (!e) throw new Error(`Module ${n} didn’t register its module`)
+        let e = n[s]
+        if (!e) throw new Error(`Module ${s} didn’t register its module`)
         return e
       })
   )
   self.define = (i, c) => {
     const a = e || ("document" in self ? document.currentScript.src : "") || location.href
-    if (s[a]) return
+    if (n[a]) return
     let r = {}
-    const t = (e) => n(e, a),
+    const t = (e) => s(e, a),
       o = { module: { uri: a }, exports: r, require: t }
-    s[a] = Promise.all(i.map((e) => o[e] || t(e))).then((e) => (c(...e), r))
+    n[a] = Promise.all(i.map((e) => o[e] || t(e))).then((e) => (c(...e), r))
   }
 }
 define(["./workbox-6a1bf588"], function (e) {
@@ -31,6 +31,14 @@ define(["./workbox-6a1bf588"], function (e) {
     e.clientsClaim(),
     e.precacheAndRoute(
       [
+        {
+          url: "/_next/static/0nKcFUsQl4GVR-fk50EGv/_buildManifest.js",
+          revision: "1c0076145a332815d124832b49d141ba",
+        },
+        {
+          url: "/_next/static/0nKcFUsQl4GVR-fk50EGv/_ssgManifest.js",
+          revision: "b6652df95db52feb4daf4eca35380933",
+        },
         { url: "/_next/static/chunks/474.2d67fcff6c6ee989.js", revision: "2d67fcff6c6ee989" },
         { url: "/_next/static/chunks/575-9bf367838f03b18a.js", revision: "9bf367838f03b18a" },
         { url: "/_next/static/chunks/834.513ff96e7692f946.js", revision: "513ff96e7692f946" },
@@ -52,8 +60,8 @@ define(["./workbox-6a1bf588"], function (e) {
           revision: "17e5a381db0b5b8e",
         },
         {
-          url: "/_next/static/chunks/pages/blog/%5Bslug%5D-b9f063ed4961259a.js",
-          revision: "b9f063ed4961259a",
+          url: "/_next/static/chunks/pages/blog/%5Bslug%5D-7b8af07d6298a553.js",
+          revision: "7b8af07d6298a553",
         },
         {
           url: "/_next/static/chunks/pages/blog/%5Bslug%5D/edit-76768b7b7ea8bb88.js",
@@ -76,8 +84,8 @@ define(["./workbox-6a1bf588"], function (e) {
           revision: "c05750383ea07540",
         },
         {
-          url: "/_next/static/chunks/pages/projects/%5Bslug%5D-dd4607a56f293195.js",
-          revision: "dd4607a56f293195",
+          url: "/_next/static/chunks/pages/projects/%5Bslug%5D-f4642b1868f27f29.js",
+          revision: "f4642b1868f27f29",
         },
         {
           url: "/_next/static/chunks/pages/projects/%5Bslug%5D/edit-7c9140b191a48caf.js",
@@ -108,14 +116,6 @@ define(["./workbox-6a1bf588"], function (e) {
         { url: "/_next/static/css/a1803eb8bea0fe31.css", revision: "a1803eb8bea0fe31" },
         { url: "/_next/static/css/ae272f57fcf9ed64.css", revision: "ae272f57fcf9ed64" },
         { url: "/_next/static/css/e62ecc000a2df61a.css", revision: "e62ecc000a2df61a" },
-        {
-          url: "/_next/static/wSwxY8acC0hwWzsRq5oLW/_buildManifest.js",
-          revision: "bca4cbca6567af052bb227777ef348f2",
-        },
-        {
-          url: "/_next/static/wSwxY8acC0hwWzsRq5oLW/_ssgManifest.js",
-          revision: "b6652df95db52feb4daf4eca35380933",
-        },
         { url: "/android-icon-144x144.png", revision: "c33f03fef94c7226137eda3f46b07506" },
         { url: "/android-icon-192x192.png", revision: "01f5049475836e9645046671a3b730c2" },
         { url: "/android-icon-36x36.png", revision: "d39de53304e7842f6be3d2d6128e93f5" },
@@ -172,10 +172,10 @@ define(["./workbox-6a1bf588"], function (e) {
         cacheName: "start-url",
         plugins: [
           {
-            cacheWillUpdate: async ({ request: e, response: s, event: n, state: i }) =>
-              s && "opaqueredirect" === s.type
-                ? new Response(s.body, { status: 200, statusText: "OK", headers: s.headers })
-                : s,
+            cacheWillUpdate: async ({ request: e, response: n, event: s, state: i }) =>
+              n && "opaqueredirect" === n.type
+                ? new Response(n.body, { status: 200, statusText: "OK", headers: n.headers })
+                : n,
           },
         ],
       }),
@@ -278,8 +278,8 @@ define(["./workbox-6a1bf588"], function (e) {
     e.registerRoute(
       ({ url: e }) => {
         if (!(self.origin === e.origin)) return !1
-        const s = e.pathname
-        return !s.startsWith("/api/auth/") && !!s.startsWith("/api/")
+        const n = e.pathname
+        return !n.startsWith("/api/auth/") && !!n.startsWith("/api/")
       },
       new e.NetworkFirst({
         cacheName: "apis",
