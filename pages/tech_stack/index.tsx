@@ -18,7 +18,7 @@ const Technologies: BlitzPage<InferGetStaticPropsType<typeof getStaticProps>> = 
   )
 }
 
-Technologies.getLayout = (page) => <Layout>{page}</Layout>
+Technologies.getLayout = (page) => <Layout title="CodeWithAnish - Tech Stack">{page}</Layout>
 
 export default Technologies
 
