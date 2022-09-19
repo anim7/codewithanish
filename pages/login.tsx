@@ -15,12 +15,6 @@ const Login: BlitzPage = () => {
           await router.push(next)
         }}
       />
-      <SignupForm
-        onSuccess={async () => {
-          const next = router.query.next ? decodeURIComponent(router.query.next as string) : "/"
-          await router.push(next)
-        }}
-      />
     </div>
   )
 }
