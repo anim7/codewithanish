@@ -1,5 +1,4 @@
-import { useMutation } from "@blitzjs/rpc"
-import { BlitzPage, Routes } from "@blitzjs/next"
+import { BlitzPage } from "@blitzjs/next"
 import Layout from "app/core/layouts/Layout"
 import HomeComponent from "app/core/components/home"
 

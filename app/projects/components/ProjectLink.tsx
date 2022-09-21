@@ -41,11 +41,23 @@ const Icon: React.FunctionComponent<{ link: string }> = ({ link }) => {
 const ProjectLink: React.FunctionComponent<Props> = ({ project, onContextMenu }) => {
   return (
     <motion.article
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0, scale: 0.5 }}
+      transition={{
+        default: {
+          duration: 0.02,
+          ease: [0, 0.71, 0.2, 1.01],
+        },
+        scale: {
+          type: "spring",
+          damping: 4,
+          stiffness: 100,
+          restDelta: 0.5,
+        },
+      }}
+      whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.02 }}
+      whileTap={{ scale: 0.98 }}
       className="h-[12rem] flex w-full dark:border-[1.5px] rounded-2xl p-2 dark:border-slate-800 shadow-xl dark:shadow-sm dark:shadow-slate-800 my-2 sm:flex-col sm:h-fit"
       onContextMenu={onContextMenu}
     >

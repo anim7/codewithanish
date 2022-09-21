@@ -15,13 +15,24 @@ const PostLink: React.FunctionComponent<Props> = ({ post, onContextMenu }) => {
   return (
     <Link href={Routes.Post({ slug: post.slug })} passHref>
       <motion.a
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        initial={{ opacity: 0, scale: 0.5 }}
+        transition={{
+          default: {
+            duration: 0.02,
+            ease: [0, 0.71, 0.2, 1.01],
+          },
+          scale: {
+            type: "spring",
+            damping: 4,
+            stiffness: 100,
+            restDelta: 0.5,
+          },
+        }}
+        whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        transition={{ duration: 0.02 }}
-        className="postlink w-72 h-[25rem] shadow-xl dark:shadow-sm dark:shadow-slate-800 dark:border-slate-800 dark:border rounded-2xl cursor-pointer dark:bg-slate-900 bg-white"
+        className="postlink w-72 h-[25rem] shadow-xl dark:shadow-sm dark:shadow-slate-800 dark:border-slate-800 dark:border rounded-2xl cursor-pointer dark:bg-slate-900 bg-white dark:hover:shadow-purple-800 dark:hover:shadow-md"
         onContextMenu={onContextMenu}
       >
         <article>

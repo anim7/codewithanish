@@ -21,6 +21,7 @@ import LoadingBar from "react-top-loading-bar"
 import { ProgressContext } from "app/core/components/progress/ProgressContext"
 import LogInOut from "app/auth/components/LogInOutButton"
 import { AuthenticationError, AuthorizationError } from "blitz"
+import Background from "app/core/components/background"
 
 export default withBlitz(function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
@@ -117,6 +118,7 @@ export default withBlitz(function App({ Component, pageProps }: AppProps) {
                 <meta name="twitter:image" content="favicon.ico" />
                 <meta name="twitter:card" content="summary_large_image" />
               </Head>
+              <Background />
               {loading && (
                 <LoadingBar
                   color="#007bff"

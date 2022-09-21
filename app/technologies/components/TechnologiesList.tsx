@@ -47,12 +47,23 @@ const TechnologiesList: React.FunctionComponent<Props> = ({ techs }) => {
                 key={key}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                initial={{ opacity: 0, scale: 0.5 }}
+                transition={{
+                  default: {
+                    duration: 0.02,
+                    ease: [0, 0.71, 0.2, 1.01],
+                  },
+                  scale: {
+                    type: "spring",
+                    damping: 4,
+                    stiffness: 100,
+                    restDelta: 0.5,
+                  },
+                }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.02 }}
                 onContextMenu={(e) => {
                   if (session.role === "ADMIN") {
                     e.preventDefault()
@@ -83,12 +94,23 @@ const TechnologiesList: React.FunctionComponent<Props> = ({ techs }) => {
           {session.role === "ADMIN" && (
             <Link href={Routes.NewTechnology()} passHref>
               <motion.a
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                initial={{ opacity: 0, scale: 0.5 }}
+                transition={{
+                  default: {
+                    duration: 0.02,
+                    ease: [0, 0.71, 0.2, 1.01],
+                  },
+                  scale: {
+                    type: "spring",
+                    damping: 4,
+                    stiffness: 100,
+                    restDelta: 0.5,
+                  },
+                }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.02 }}
                 className="flex items-center justify-center text-gray-300 bg-white rounded shadow-xl cursor-pointer h-52 dark:bg-slate-900 dark:shadow-sm dark:shadow-slate-800 dark:border-slate-800 dark:border dark:text-slate-700 font-extralight text-[6rem]"
               >
                 +
