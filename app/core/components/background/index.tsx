@@ -9,6 +9,8 @@ import { degreesToRadians, progress, mix } from "popmotion"
 
 const Star = ({ p }: { p: number }) => {
   const ref = useRef<any>(null)
+  const texture = useTexture("favicon.ico")
+
   useLayoutEffect(() => {
     const distance = mix(2, 3.5, Math.random())
     const yAngle = mix(degreesToRadians(80), degreesToRadians(100), Math.random())
@@ -18,7 +20,7 @@ const Star = ({ p }: { p: number }) => {
   return (
     <mesh ref={ref}>
       <boxGeometry args={[0.05, 0.05, 0.05]} />
-      <meshBasicMaterial color="black" />
+      <meshBasicMaterial map={texture} />
       <Edges scale={1} color="#007bff" />
     </mesh>
   )

@@ -37,6 +37,8 @@ const NewTechnologyComponent: React.FunctionComponent = () => {
           }}
           onSubmit={async (values) => {
             try {
+              if ((document.getElementById("yes")! as HTMLInputElement).checked)
+                values.invertInDarkMode = true
               await createTechnologyMutation(values)
               await router.push(Routes.Technologies())
             } catch (error: any) {

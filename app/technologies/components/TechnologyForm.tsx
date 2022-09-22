@@ -2,6 +2,7 @@ import { Form, FormProps } from "app/core/components/form/Form"
 import { LabeledTextField } from "app/core/components/form/LabeledTextField"
 import { z } from "zod"
 export { FORM_ERROR } from "app/core/components/form/Form"
+import Invert from "./Invert"
 
 export function TechnologyForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
   return (
@@ -10,6 +11,7 @@ export function TechnologyForm<S extends z.ZodType<any, any>>(props: FormProps<S
       <LabeledTextField name="link" label="Link" placeholder="Official Website Link" />
       <LabeledTextField name="logo" label="Logo" placeholder="Logo Link" />
       <LabeledTextField name="desc" label="Description" placeholder="Description" />
+      <Invert />
     </Form>
   )
 }
