@@ -58,7 +58,7 @@ const ProjectLink: React.FunctionComponent<Props> = ({ project, onContextMenu })
       viewport={{ once: true }}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      className="h-[12rem] flex w-full dark:border-[1.5px] rounded-2xl p-2 dark:border-slate-800 shadow-xl dark:shadow-sm dark:shadow-slate-800 my-2 sm:flex-col sm:h-fit"
+      className="h-[12rem] flex w-full dark:border-[1.5px] rounded-2xl p-2 dark:border-slate-800 shadow-xl dark:shadow-sm dark:shadow-slate-800 my-2 sm:flex-col sm:h-fit dark:bg-slate-900 bg-white"
       onContextMenu={onContextMenu}
     >
       <div className="h-full w-[18rem] relative dark:bg-[#04031b] overflow-hidden sm:w-full sm:h-[10rem]">

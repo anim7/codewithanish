@@ -32,7 +32,7 @@ const PostLink: React.FunctionComponent<Props> = ({ post, onContextMenu }) => {
         viewport={{ once: true }}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="postlink w-72 h-[25rem] shadow-xl dark:shadow-sm dark:shadow-slate-800 dark:border-slate-800 dark:border rounded-2xl cursor-pointer dark:bg-slate-900 bg-white dark:hover:shadow-purple-800 dark:hover:shadow-md"
+        className="postlink w-72 h-[25rem] shadow-xl dark:shadow-sm dark:shadow-slate-800 dark:border-slate-800 dark:border rounded-2xl cursor-pointer dark:bg-slate-900 bg-white dark:hover:shadow-white"
         onContextMenu={onContextMenu}
       >
         <article>

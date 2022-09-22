@@ -3,7 +3,6 @@ module.exports = {
   darkMode: "class",
   content: ["{pages,app}/**/*.{js,ts,jsx,tsx}"],
   mode: "jit",
-  purge: ["./{pages,app}/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
       sm: { max: "600px" },
