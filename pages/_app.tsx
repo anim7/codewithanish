@@ -22,8 +22,10 @@ import { ProgressContext } from "app/core/components/progress/ProgressContext"
 import LogInOut from "app/auth/components/LogInOutButton"
 import { AuthenticationError, AuthorizationError } from "blitz"
 import Background from "app/core/components/background"
+import { useRouter } from "next/router"
 
 export default withBlitz(function App({ Component, pageProps }: AppProps) {
+  const router = useRouter()
   const getLayout = Component.getLayout || ((page) => page)
   const [theme, setTheme] = useState<Theme>("dark")
   const [progress, setProgressFunc] = useState(0)
@@ -45,6 +47,10 @@ export default withBlitz(function App({ Component, pageProps }: AppProps) {
     }
     // eslint-disable-next-line
   }, [])
+
+  router.events?.on("routeChangeStart", () => setProgress(60))
+  router.events?.on("routeChangeComplete", () => setProgress(100))
+  router.events?.on("routeChangeError", () => setProgress(0))
 
   return (
     <ErrorBoundary
