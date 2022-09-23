@@ -48,7 +48,10 @@ export default withBlitz(function App({ Component, pageProps }: AppProps) {
     // eslint-disable-next-line
   }, [])
 
-  router.events?.on("routeChangeStart", () => setProgress(60))
+  router.events?.on("routeChangeStart", () => {
+    setProgress(0)
+    setProgress(60)
+  })
   router.events?.on("routeChangeComplete", () => setProgress(100))
   router.events?.on("routeChangeError", () => setProgress(0))
 
